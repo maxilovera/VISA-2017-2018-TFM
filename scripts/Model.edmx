@@ -1,0 +1,967 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UnirModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Unir.dbo.CotizacionesDolar' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="CotizacionesDolar">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="BilleteCompra" Type="varchar" MaxLength="50" />
+          <Property Name="BilleteVenta" Type="varchar" MaxLength="50" />
+          <Property Name="Compra" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Venta" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Unir.dbo.Customers' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Datos">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="LluviaDiariaSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaMensualSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaAnualSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="CotizacionDolar" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioSoja" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualSoja" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualSoja" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioTrigo" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualTrigo" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualTrigo" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioMaiz" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualMaiz" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualMaiz" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioSojaUSD" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualSojaUSD" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualSojaUSD" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioTrigoUSD" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualTrigoUSD" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualTrigoUSD" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioMaizUSD" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualMaizUSD" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualMaizUSD" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaSojaBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaSojaCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaSojaSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaMaizBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaMaizCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaMaizSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaTrigoBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaTrigoCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaTrigoSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaSojaBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaSojaCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaSojaSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaMaizBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaMaizCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaMaizSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaTrigoBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaTrigoCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaTrigoSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionSojaBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionSojaCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionSojaSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionMaizBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionMaizCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionMaizSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionTrigoBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionTrigoCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionTrigoSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoSojaBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoSojaCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoSojaSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoMaizBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoMaizCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoMaizSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoTrigoBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoTrigoCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoTrigoSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LLuviaMensualBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaAnualBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="CantidadIncendiosAnualesBuenosAires" Type="int" />
+          <Property Name="CantidadIncendiosAnualesCordoba" Type="int" />
+          <Property Name="CantidadIncendiosAnualesSantaFe" Type="int" />
+          <Property Name="PromedioIncendiosMensualesBuenosAires" Type="int" />
+          <Property Name="PromedioIncendiosMensualesCordoba" Type="int" />
+          <Property Name="PromedioIncendiosMensualesSantaFe" Type="int" />
+          <Property Name="VariacionTrigoDiaAnterior" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionSojaDiaAnterior" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionMaizDiaAnterior" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionTrigoTresDias" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionSojaTresDias" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionMaizTresDia" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionTrigoSieteDias" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionSojaSieteDias" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionMaizSieteDias" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'Unir.dbo.DatosDiariosInta' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="DatosDiariosInta">
+          <Property Name="Fecha" Type="nvarchar" MaxLength="255" />
+          <Property Name="Temperatura_Abrigo_150cm" Type="nvarchar" MaxLength="255" />
+          <Property Name="Temperatura_Abrigo_150cm_Maxima" Type="nvarchar" MaxLength="255" />
+          <Property Name="Temperatura_Abrigo_150cm_Minima" Type="nvarchar" MaxLength="255" />
+          <Property Name="Temperatura_Intemperie_5cm_Minima" Type="nvarchar" MaxLength="255" />
+          <Property Name="Temperatura_Intemperie_50cm_Minima" Type="nvarchar" MaxLength="255" />
+          <Property Name="Temperatura_Suelo_5cm_Media" Type="nvarchar" MaxLength="255" />
+          <Property Name="Temperatura_Suelo_10cm_Media" Type="nvarchar" MaxLength="255" />
+          <Property Name="Temperatura_Inte_5cm" Type="nvarchar" MaxLength="255" />
+          <Property Name="Temperatura_Intemperie_150cm_Minima" Type="nvarchar" MaxLength="255" />
+          <Property Name="Humedad_Suelo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Precipitacion_Pluviometrica" Type="nvarchar" MaxLength="255" />
+          <Property Name="Granizo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Nieve" Type="nvarchar" MaxLength="255" />
+          <Property Name="Heliofania_Efectiva" Type="nvarchar" MaxLength="255" />
+          <Property Name="Heliofania_Relativa" Type="nvarchar" MaxLength="255" />
+          <Property Name="Tesion_Vapor_Media" Type="nvarchar" MaxLength="255" />
+          <Property Name="Humedad_Media" Type="nvarchar" MaxLength="255" />
+          <Property Name="Humedad_Media_8_14_20" Type="nvarchar" MaxLength="255" />
+          <Property Name="Rocio_Medio" Type="nvarchar" MaxLength="255" />
+          <Property Name="Duracion_Follaje_Mojado" Type="nvarchar" MaxLength="255" />
+          <Property Name="Velocidad_Viento_200cm_Media" Type="nvarchar" MaxLength="255" />
+          <Property Name="Direccion_Viento_200cm" Type="nvarchar" MaxLength="255" />
+          <Property Name="Velocidad_Viento_1000cm_Media" Type="nvarchar" MaxLength="255" />
+          <Property Name="Direccion_Viento_1000cm" Type="nvarchar" MaxLength="255" />
+          <Property Name="Velocidad_Viento_Maxima" Type="nvarchar" MaxLength="255" />
+          <Property Name="Presion_Media" Type="nvarchar" MaxLength="255" />
+          <Property Name="Radiacion_Global" Type="nvarchar" MaxLength="255" />
+          <Property Name="Radiacion_Neta" Type="nvarchar" MaxLength="255" />
+          <Property Name="Evaporacion_Tanque" Type="nvarchar" MaxLength="255" />
+          <Property Name="Evapotranspiracion_Potencial" Type="nvarchar" MaxLength="255" />
+          <Property Name="Profundidad_Napa" Type="nvarchar" MaxLength="255" />
+          <Property Name="Horas_Frio" Type="nvarchar" MaxLength="255" />
+          <Property Name="Unidad_Frio" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'Unir.dbo.Estimaciones_Agricolas' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Estimaciones_Agricolas">
+          <Property Name="provincia_id" Type="float" />
+          <Property Name="nom_provincia" Type="nvarchar" MaxLength="255" />
+          <Property Name="departamento_id" Type="float" />
+          <Property Name="nom_depto" Type="nvarchar" MaxLength="255" />
+          <Property Name="cultivo_id" Type="float" />
+          <Property Name="nom_cultivo" Type="nvarchar" MaxLength="255" />
+          <Property Name="campaña_id" Type="float" />
+          <Property Name="campaña" Type="nvarchar" MaxLength="255" />
+          <Property Name="año" Type="int" />
+          <Property Name="sup_sembrada" Type="float" />
+          <Property Name="sup_cosechada" Type="float" />
+          <Property Name="produccion" Type="float" />
+          <Property Name="rendimiento" Type="float" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'Unir.dbo.incendios-cantidad-causas-provincia' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="incendios-cantidad-causas-provincia">
+          <Property Name="incendio_anio" Type="float" />
+          <Property Name="incendio_provincia" Type="nvarchar" MaxLength="255" />
+          <Property Name="incendio_total_numero" Type="float" />
+          <Property Name="incendio_negligencia_numero" Type="float" />
+          <Property Name="incendio_intencional_numero" Type="float" />
+          <Property Name="incendio_natural_numero" Type="float" />
+          <Property Name="incendio_desconocida_numero" Type="float" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Unir.dbo.LluviasAnuales' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="LluviasAnuales">
+          <Key>
+            <PropertyRef Name="Año" />
+          </Key>
+          <Property Name="Año" Type="int" Nullable="false" />
+          <Property Name="Enero" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Febrero" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Marzo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Abril" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Mayo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Junio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Julio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Agosto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Septiembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Octubre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Noviembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Diciembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAnual" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PromedioMensual" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Unir.dbo.LluviasAnualesBuenosAires' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="LluviasAnualesBuenosAires">
+          <Key>
+            <PropertyRef Name="Año" />
+          </Key>
+          <Property Name="Año" Type="int" Nullable="false" />
+          <Property Name="Enero" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Febrero" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Marzo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Abril" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Mayo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Junio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Julio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Agosto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Septiembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Octubre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Noviembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Diciembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAnual" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PromedioMensual" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Unir.dbo.LluviasAnualesSantaFe' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="LluviasAnualesSantaFe">
+          <Key>
+            <PropertyRef Name="Año" />
+          </Key>
+          <Property Name="Año" Type="int" Nullable="false" />
+          <Property Name="Enero" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Febrero" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Marzo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Abril" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Mayo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Junio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Julio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Agosto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Septiembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Octubre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Noviembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Diciembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAnual" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PromedioMensual" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Unir.dbo.LluviasDiariasBuenosAires' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="LluviasDiariasBuenosAires">
+          <Key>
+            <PropertyRef Name="Año" />
+            <PropertyRef Name="Dia" />
+          </Key>
+          <Property Name="Año" Type="int" Nullable="false" />
+          <Property Name="Dia" Type="int" Nullable="false" />
+          <Property Name="Enero" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Febrero" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Marzo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Abril" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Mayo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Junio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Julio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Agosto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Septiembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Octubre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Noviembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Diciembre" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Unir.dbo.LluviasDiariasSantaFe' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="LluviasDiariasSantaFe">
+          <Key>
+            <PropertyRef Name="Año" />
+            <PropertyRef Name="Dia" />
+          </Key>
+          <Property Name="Año" Type="int" Nullable="false" />
+          <Property Name="Dia" Type="int" Nullable="false" />
+          <Property Name="Enero" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Febrero" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Marzo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Abril" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Mayo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Junio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Julio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Agosto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Septiembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Octubre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Noviembre" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Diciembre" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="LluviasRegistradas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Provincia" Type="varchar" MaxLength="550" />
+          <Property Name="Departamento" Type="varchar" MaxLength="550" />
+          <Property Name="Localidad" Type="varchar" MaxLength="550" />
+          <Property Name="Registro" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Promedio_diario_maiz">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="PromedioAnual" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PromedioMensual" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="Promedio_diario_soja">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="PromedioAnual" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PromedioMensual" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="Promedio_diario_trigo">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="PromedioAnual" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PromedioMensual" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityContainer Name="UnirModelStoreContainer">
+          <EntitySet Name="Datos" EntityType="Self.Datos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LluviasRegistradas" EntityType="Self.LluviasRegistradas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promedio_diario_maiz" EntityType="Self.Promedio_diario_maiz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promedio_diario_soja" EntityType="Self.Promedio_diario_soja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promedio_diario_trigo" EntityType="Self.Promedio_diario_trigo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CotizacionesDolar" EntityType="Self.CotizacionesDolar" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CotizacionesDolar].[Fecha] AS [Fecha], 
+    [CotizacionesDolar].[BilleteCompra] AS [BilleteCompra], 
+    [CotizacionesDolar].[BilleteVenta] AS [BilleteVenta], 
+    [CotizacionesDolar].[Compra] AS [Compra], 
+    [CotizacionesDolar].[Venta] AS [Venta]
+    FROM [dbo].[CotizacionesDolar] AS [CotizacionesDolar]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Customers" EntityType="Self.Customers" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Customers].[CustomerId] AS [CustomerId]
+    FROM [dbo].[Customers] AS [Customers]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LluviasAnuales" EntityType="Self.LluviasAnuales" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LluviasAnuales].[Año] AS [Año], 
+    [LluviasAnuales].[Enero] AS [Enero], 
+    [LluviasAnuales].[Febrero] AS [Febrero], 
+    [LluviasAnuales].[Marzo] AS [Marzo], 
+    [LluviasAnuales].[Abril] AS [Abril], 
+    [LluviasAnuales].[Mayo] AS [Mayo], 
+    [LluviasAnuales].[Junio] AS [Junio], 
+    [LluviasAnuales].[Julio] AS [Julio], 
+    [LluviasAnuales].[Agosto] AS [Agosto], 
+    [LluviasAnuales].[Septiembre] AS [Septiembre], 
+    [LluviasAnuales].[Octubre] AS [Octubre], 
+    [LluviasAnuales].[Noviembre] AS [Noviembre], 
+    [LluviasAnuales].[Diciembre] AS [Diciembre], 
+    [LluviasAnuales].[TotalAnual] AS [TotalAnual], 
+    [LluviasAnuales].[PromedioMensual] AS [PromedioMensual]
+    FROM [dbo].[LluviasAnuales] AS [LluviasAnuales]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LluviasAnualesBuenosAires" EntityType="Self.LluviasAnualesBuenosAires" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LluviasAnualesBuenosAires].[Año] AS [Año], 
+    [LluviasAnualesBuenosAires].[Enero] AS [Enero], 
+    [LluviasAnualesBuenosAires].[Febrero] AS [Febrero], 
+    [LluviasAnualesBuenosAires].[Marzo] AS [Marzo], 
+    [LluviasAnualesBuenosAires].[Abril] AS [Abril], 
+    [LluviasAnualesBuenosAires].[Mayo] AS [Mayo], 
+    [LluviasAnualesBuenosAires].[Junio] AS [Junio], 
+    [LluviasAnualesBuenosAires].[Julio] AS [Julio], 
+    [LluviasAnualesBuenosAires].[Agosto] AS [Agosto], 
+    [LluviasAnualesBuenosAires].[Septiembre] AS [Septiembre], 
+    [LluviasAnualesBuenosAires].[Octubre] AS [Octubre], 
+    [LluviasAnualesBuenosAires].[Noviembre] AS [Noviembre], 
+    [LluviasAnualesBuenosAires].[Diciembre] AS [Diciembre], 
+    [LluviasAnualesBuenosAires].[TotalAnual] AS [TotalAnual], 
+    [LluviasAnualesBuenosAires].[PromedioMensual] AS [PromedioMensual]
+    FROM [dbo].[LluviasAnualesBuenosAires] AS [LluviasAnualesBuenosAires]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LluviasAnualesSantaFe" EntityType="Self.LluviasAnualesSantaFe" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LluviasAnualesSantaFe].[Año] AS [Año], 
+    [LluviasAnualesSantaFe].[Enero] AS [Enero], 
+    [LluviasAnualesSantaFe].[Febrero] AS [Febrero], 
+    [LluviasAnualesSantaFe].[Marzo] AS [Marzo], 
+    [LluviasAnualesSantaFe].[Abril] AS [Abril], 
+    [LluviasAnualesSantaFe].[Mayo] AS [Mayo], 
+    [LluviasAnualesSantaFe].[Junio] AS [Junio], 
+    [LluviasAnualesSantaFe].[Julio] AS [Julio], 
+    [LluviasAnualesSantaFe].[Agosto] AS [Agosto], 
+    [LluviasAnualesSantaFe].[Septiembre] AS [Septiembre], 
+    [LluviasAnualesSantaFe].[Octubre] AS [Octubre], 
+    [LluviasAnualesSantaFe].[Noviembre] AS [Noviembre], 
+    [LluviasAnualesSantaFe].[Diciembre] AS [Diciembre], 
+    [LluviasAnualesSantaFe].[TotalAnual] AS [TotalAnual], 
+    [LluviasAnualesSantaFe].[PromedioMensual] AS [PromedioMensual]
+    FROM [dbo].[LluviasAnualesSantaFe] AS [LluviasAnualesSantaFe]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LluviasDiariasBuenosAires" EntityType="Self.LluviasDiariasBuenosAires" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LluviasDiariasBuenosAires].[Año] AS [Año], 
+    [LluviasDiariasBuenosAires].[Dia] AS [Dia], 
+    [LluviasDiariasBuenosAires].[Enero] AS [Enero], 
+    [LluviasDiariasBuenosAires].[Febrero] AS [Febrero], 
+    [LluviasDiariasBuenosAires].[Marzo] AS [Marzo], 
+    [LluviasDiariasBuenosAires].[Abril] AS [Abril], 
+    [LluviasDiariasBuenosAires].[Mayo] AS [Mayo], 
+    [LluviasDiariasBuenosAires].[Junio] AS [Junio], 
+    [LluviasDiariasBuenosAires].[Julio] AS [Julio], 
+    [LluviasDiariasBuenosAires].[Agosto] AS [Agosto], 
+    [LluviasDiariasBuenosAires].[Septiembre] AS [Septiembre], 
+    [LluviasDiariasBuenosAires].[Octubre] AS [Octubre], 
+    [LluviasDiariasBuenosAires].[Noviembre] AS [Noviembre], 
+    [LluviasDiariasBuenosAires].[Diciembre] AS [Diciembre]
+    FROM [dbo].[LluviasDiariasBuenosAires] AS [LluviasDiariasBuenosAires]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LluviasDiariasSantaFe" EntityType="Self.LluviasDiariasSantaFe" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LluviasDiariasSantaFe].[Año] AS [Año], 
+    [LluviasDiariasSantaFe].[Dia] AS [Dia], 
+    [LluviasDiariasSantaFe].[Enero] AS [Enero], 
+    [LluviasDiariasSantaFe].[Febrero] AS [Febrero], 
+    [LluviasDiariasSantaFe].[Marzo] AS [Marzo], 
+    [LluviasDiariasSantaFe].[Abril] AS [Abril], 
+    [LluviasDiariasSantaFe].[Mayo] AS [Mayo], 
+    [LluviasDiariasSantaFe].[Junio] AS [Junio], 
+    [LluviasDiariasSantaFe].[Julio] AS [Julio], 
+    [LluviasDiariasSantaFe].[Agosto] AS [Agosto], 
+    [LluviasDiariasSantaFe].[Septiembre] AS [Septiembre], 
+    [LluviasDiariasSantaFe].[Octubre] AS [Octubre], 
+    [LluviasDiariasSantaFe].[Noviembre] AS [Noviembre], 
+    [LluviasDiariasSantaFe].[Diciembre] AS [Diciembre]
+    FROM [dbo].[LluviasDiariasSantaFe] AS [LluviasDiariasSantaFe]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UnirModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="UnirEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Datos" EntityType="UnirModel.Datos" />
+          <EntitySet Name="LluviasRegistradas" EntityType="UnirModel.LluviasRegistradas" />
+          <EntitySet Name="Promedio_diario_maiz" EntityType="UnirModel.Promedio_diario_maiz" />
+          <EntitySet Name="Promedio_diario_soja" EntityType="UnirModel.Promedio_diario_soja" />
+          <EntitySet Name="Promedio_diario_trigo" EntityType="UnirModel.Promedio_diario_trigo" />
+          <EntitySet Name="CotizacionesDolar" EntityType="UnirModel.CotizacionesDolar" />
+          <EntitySet Name="Customers" EntityType="UnirModel.Customers" />
+          <EntitySet Name="LluviasAnuales" EntityType="UnirModel.LluviasAnuales" />
+          <EntitySet Name="LluviasAnualesBuenosAires" EntityType="UnirModel.LluviasAnualesBuenosAires" />
+          <EntitySet Name="LluviasAnualesSantaFe" EntityType="UnirModel.LluviasAnualesSantaFe" />
+          <EntitySet Name="LluviasDiariasBuenosAires" EntityType="UnirModel.LluviasDiariasBuenosAires" />
+          <EntitySet Name="LluviasDiariasSantaFe" EntityType="UnirModel.LluviasDiariasSantaFe" />
+        </EntityContainer>
+        <EntityType Name="Datos">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LluviaDiariaSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaMensualSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaAnualSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="CotizacionDolar" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioSoja" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualSoja" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualSoja" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioTrigo" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualTrigo" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualTrigo" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioMaiz" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualMaiz" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualMaiz" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioSojaUSD" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualSojaUSD" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualSojaUSD" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioTrigoUSD" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualTrigoUSD" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualTrigoUSD" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioDiarioMaizUSD" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioMensualMaizUSD" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioAnualMaizUSD" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaSojaBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaSojaCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaSojaSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaMaizBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaMaizCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaMaizSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaTrigoBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaTrigoCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieSembradaTrigoSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaSojaBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaSojaCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaSojaSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaMaizBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaMaizCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaMaizSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaTrigoBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaTrigoCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="SuperficieCosechadaTrigoSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionSojaBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionSojaCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionSojaSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionMaizBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionMaizCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionMaizSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionTrigoBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionTrigoCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ProduccionTrigoSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoSojaBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoSojaCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoSojaSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoMaizBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoMaizCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoMaizSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoTrigoBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoTrigoCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RendimientoTrigoSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LLuviaMensualBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaAnualBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="CantidadIncendiosAnualesBuenosAires" Type="Int32" />
+          <Property Name="CantidadIncendiosAnualesCordoba" Type="Int32" />
+          <Property Name="CantidadIncendiosAnualesSantaFe" Type="Int32" />
+          <Property Name="PromedioIncendiosMensualesBuenosAires" Type="Int32" />
+          <Property Name="PromedioIncendiosMensualesCordoba" Type="Int32" />
+          <Property Name="PromedioIncendiosMensualesSantaFe" Type="Int32" />
+          <Property Name="VariacionTrigoDiaAnterior" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionSojaDiaAnterior" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionMaizDiaAnterior" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionTrigoTresDias" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionSojaTresDias" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionMaizTresDia" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionTrigoSieteDias" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionSojaSieteDias" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionMaizSieteDias" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="LluviasRegistradas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Provincia" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+          <Property Name="Departamento" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+          <Property Name="Localidad" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+          <Property Name="Registro" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Promedio_diario_maiz">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="PromedioAnual" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PromedioMensual" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="Promedio_diario_soja">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="PromedioAnual" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PromedioMensual" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="Promedio_diario_trigo">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="PromedioAnual" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PromedioMensual" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="CotizacionesDolar">
+          <Key>
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BilleteCompra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BilleteVenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Compra" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Venta" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LluviasAnuales">
+          <Key>
+            <PropertyRef Name="Año" />
+          </Key>
+          <Property Name="Año" Type="Int32" Nullable="false" />
+          <Property Name="Enero" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Febrero" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Marzo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Abril" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Mayo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Junio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Julio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Agosto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Septiembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Octubre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Noviembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Diciembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAnual" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PromedioMensual" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="LluviasAnualesBuenosAires">
+          <Key>
+            <PropertyRef Name="Año" />
+          </Key>
+          <Property Name="Año" Type="Int32" Nullable="false" />
+          <Property Name="Enero" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Febrero" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Marzo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Abril" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Mayo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Junio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Julio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Agosto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Septiembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Octubre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Noviembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Diciembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAnual" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PromedioMensual" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="LluviasAnualesSantaFe">
+          <Key>
+            <PropertyRef Name="Año" />
+          </Key>
+          <Property Name="Año" Type="Int32" Nullable="false" />
+          <Property Name="Enero" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Febrero" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Marzo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Abril" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Mayo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Junio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Julio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Agosto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Septiembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Octubre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Noviembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Diciembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAnual" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PromedioMensual" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="LluviasDiariasBuenosAires">
+          <Key>
+            <PropertyRef Name="Año" />
+            <PropertyRef Name="Dia" />
+          </Key>
+          <Property Name="Año" Type="Int32" Nullable="false" />
+          <Property Name="Dia" Type="Int32" Nullable="false" />
+          <Property Name="Enero" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Febrero" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Marzo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Abril" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Mayo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Junio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Julio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Agosto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Septiembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Octubre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Noviembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Diciembre" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="LluviasDiariasSantaFe">
+          <Key>
+            <PropertyRef Name="Año" />
+            <PropertyRef Name="Dia" />
+          </Key>
+          <Property Name="Año" Type="Int32" Nullable="false" />
+          <Property Name="Dia" Type="Int32" Nullable="false" />
+          <Property Name="Enero" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Febrero" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Marzo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Abril" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Mayo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Junio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Julio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Agosto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Septiembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Octubre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Noviembre" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Diciembre" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UnirModelStoreContainer" CdmEntityContainer="UnirEntities">
+          <EntitySetMapping Name="Datos">
+            <EntityTypeMapping TypeName="UnirModel.Datos">
+              <MappingFragment StoreEntitySet="Datos">
+                <ScalarProperty Name="VariacionMaizSieteDias" ColumnName="VariacionMaizSieteDias" />
+                <ScalarProperty Name="VariacionSojaSieteDias" ColumnName="VariacionSojaSieteDias" />
+                <ScalarProperty Name="VariacionTrigoSieteDias" ColumnName="VariacionTrigoSieteDias" />
+                <ScalarProperty Name="VariacionMaizTresDia" ColumnName="VariacionMaizTresDia" />
+                <ScalarProperty Name="VariacionSojaTresDias" ColumnName="VariacionSojaTresDias" />
+                <ScalarProperty Name="VariacionTrigoTresDias" ColumnName="VariacionTrigoTresDias" />
+                <ScalarProperty Name="VariacionMaizDiaAnterior" ColumnName="VariacionMaizDiaAnterior" />
+                <ScalarProperty Name="VariacionSojaDiaAnterior" ColumnName="VariacionSojaDiaAnterior" />
+                <ScalarProperty Name="VariacionTrigoDiaAnterior" ColumnName="VariacionTrigoDiaAnterior" />
+                <ScalarProperty Name="PromedioIncendiosMensualesSantaFe" ColumnName="PromedioIncendiosMensualesSantaFe" />
+                <ScalarProperty Name="PromedioIncendiosMensualesCordoba" ColumnName="PromedioIncendiosMensualesCordoba" />
+                <ScalarProperty Name="PromedioIncendiosMensualesBuenosAires" ColumnName="PromedioIncendiosMensualesBuenosAires" />
+                <ScalarProperty Name="CantidadIncendiosAnualesSantaFe" ColumnName="CantidadIncendiosAnualesSantaFe" />
+                <ScalarProperty Name="CantidadIncendiosAnualesCordoba" ColumnName="CantidadIncendiosAnualesCordoba" />
+                <ScalarProperty Name="CantidadIncendiosAnualesBuenosAires" ColumnName="CantidadIncendiosAnualesBuenosAires" />
+                <ScalarProperty Name="LluviaAnualBuenosAires" ColumnName="LluviaAnualBuenosAires" />
+                <ScalarProperty Name="LLuviaMensualBuenosAires" ColumnName="LLuviaMensualBuenosAires" />
+                <ScalarProperty Name="LluviaDiariaBuenosAires" ColumnName="LluviaDiariaBuenosAires" />
+                <ScalarProperty Name="RendimientoTrigoSantaFe" ColumnName="RendimientoTrigoSantaFe" />
+                <ScalarProperty Name="RendimientoTrigoCordoba" ColumnName="RendimientoTrigoCordoba" />
+                <ScalarProperty Name="RendimientoTrigoBuenosAires" ColumnName="RendimientoTrigoBuenosAires" />
+                <ScalarProperty Name="RendimientoMaizSantaFe" ColumnName="RendimientoMaizSantaFe" />
+                <ScalarProperty Name="RendimientoMaizCordoba" ColumnName="RendimientoMaizCordoba" />
+                <ScalarProperty Name="RendimientoMaizBuenosAires" ColumnName="RendimientoMaizBuenosAires" />
+                <ScalarProperty Name="RendimientoSojaSantaFe" ColumnName="RendimientoSojaSantaFe" />
+                <ScalarProperty Name="RendimientoSojaCordoba" ColumnName="RendimientoSojaCordoba" />
+                <ScalarProperty Name="RendimientoSojaBuenosAires" ColumnName="RendimientoSojaBuenosAires" />
+                <ScalarProperty Name="ProduccionTrigoSantaFe" ColumnName="ProduccionTrigoSantaFe" />
+                <ScalarProperty Name="ProduccionTrigoCordoba" ColumnName="ProduccionTrigoCordoba" />
+                <ScalarProperty Name="ProduccionTrigoBuenosAires" ColumnName="ProduccionTrigoBuenosAires" />
+                <ScalarProperty Name="ProduccionMaizSantaFe" ColumnName="ProduccionMaizSantaFe" />
+                <ScalarProperty Name="ProduccionMaizCordoba" ColumnName="ProduccionMaizCordoba" />
+                <ScalarProperty Name="ProduccionMaizBuenosAires" ColumnName="ProduccionMaizBuenosAires" />
+                <ScalarProperty Name="ProduccionSojaSantaFe" ColumnName="ProduccionSojaSantaFe" />
+                <ScalarProperty Name="ProduccionSojaCordoba" ColumnName="ProduccionSojaCordoba" />
+                <ScalarProperty Name="ProduccionSojaBuenosAires" ColumnName="ProduccionSojaBuenosAires" />
+                <ScalarProperty Name="SuperficieCosechadaTrigoSantaFe" ColumnName="SuperficieCosechadaTrigoSantaFe" />
+                <ScalarProperty Name="SuperficieCosechadaTrigoCordoba" ColumnName="SuperficieCosechadaTrigoCordoba" />
+                <ScalarProperty Name="SuperficieCosechadaTrigoBuenosAires" ColumnName="SuperficieCosechadaTrigoBuenosAires" />
+                <ScalarProperty Name="SuperficieCosechadaMaizSantaFe" ColumnName="SuperficieCosechadaMaizSantaFe" />
+                <ScalarProperty Name="SuperficieCosechadaMaizCordoba" ColumnName="SuperficieCosechadaMaizCordoba" />
+                <ScalarProperty Name="SuperficieCosechadaMaizBuenosAires" ColumnName="SuperficieCosechadaMaizBuenosAires" />
+                <ScalarProperty Name="SuperficieCosechadaSojaSantaFe" ColumnName="SuperficieCosechadaSojaSantaFe" />
+                <ScalarProperty Name="SuperficieCosechadaSojaCordoba" ColumnName="SuperficieCosechadaSojaCordoba" />
+                <ScalarProperty Name="SuperficieCosechadaSojaBuenosAires" ColumnName="SuperficieCosechadaSojaBuenosAires" />
+                <ScalarProperty Name="SuperficieSembradaTrigoSantaFe" ColumnName="SuperficieSembradaTrigoSantaFe" />
+                <ScalarProperty Name="SuperficieSembradaTrigoCordoba" ColumnName="SuperficieSembradaTrigoCordoba" />
+                <ScalarProperty Name="SuperficieSembradaTrigoBuenosAires" ColumnName="SuperficieSembradaTrigoBuenosAires" />
+                <ScalarProperty Name="SuperficieSembradaMaizSantaFe" ColumnName="SuperficieSembradaMaizSantaFe" />
+                <ScalarProperty Name="SuperficieSembradaMaizCordoba" ColumnName="SuperficieSembradaMaizCordoba" />
+                <ScalarProperty Name="SuperficieSembradaMaizBuenosAires" ColumnName="SuperficieSembradaMaizBuenosAires" />
+                <ScalarProperty Name="SuperficieSembradaSojaSantaFe" ColumnName="SuperficieSembradaSojaSantaFe" />
+                <ScalarProperty Name="SuperficieSembradaSojaCordoba" ColumnName="SuperficieSembradaSojaCordoba" />
+                <ScalarProperty Name="SuperficieSembradaSojaBuenosAires" ColumnName="SuperficieSembradaSojaBuenosAires" />
+                <ScalarProperty Name="PrecioPromedioAnualMaizUSD" ColumnName="PrecioPromedioAnualMaizUSD" />
+                <ScalarProperty Name="PrecioPromedioMensualMaizUSD" ColumnName="PrecioPromedioMensualMaizUSD" />
+                <ScalarProperty Name="PrecioPromedioDiarioMaizUSD" ColumnName="PrecioPromedioDiarioMaizUSD" />
+                <ScalarProperty Name="PrecioPromedioAnualTrigoUSD" ColumnName="PrecioPromedioAnualTrigoUSD" />
+                <ScalarProperty Name="PrecioPromedioMensualTrigoUSD" ColumnName="PrecioPromedioMensualTrigoUSD" />
+                <ScalarProperty Name="PrecioPromedioDiarioTrigoUSD" ColumnName="PrecioPromedioDiarioTrigoUSD" />
+                <ScalarProperty Name="PrecioPromedioAnualSojaUSD" ColumnName="PrecioPromedioAnualSojaUSD" />
+                <ScalarProperty Name="PrecioPromedioMensualSojaUSD" ColumnName="PrecioPromedioMensualSojaUSD" />
+                <ScalarProperty Name="PrecioPromedioDiarioSojaUSD" ColumnName="PrecioPromedioDiarioSojaUSD" />
+                <ScalarProperty Name="PrecioPromedioAnualMaiz" ColumnName="PrecioPromedioAnualMaiz" />
+                <ScalarProperty Name="PrecioPromedioMensualMaiz" ColumnName="PrecioPromedioMensualMaiz" />
+                <ScalarProperty Name="PrecioPromedioDiarioMaiz" ColumnName="PrecioPromedioDiarioMaiz" />
+                <ScalarProperty Name="PrecioPromedioAnualTrigo" ColumnName="PrecioPromedioAnualTrigo" />
+                <ScalarProperty Name="PrecioPromedioMensualTrigo" ColumnName="PrecioPromedioMensualTrigo" />
+                <ScalarProperty Name="PrecioPromedioDiarioTrigo" ColumnName="PrecioPromedioDiarioTrigo" />
+                <ScalarProperty Name="PrecioPromedioAnualSoja" ColumnName="PrecioPromedioAnualSoja" />
+                <ScalarProperty Name="PrecioPromedioMensualSoja" ColumnName="PrecioPromedioMensualSoja" />
+                <ScalarProperty Name="PrecioPromedioDiarioSoja" ColumnName="PrecioPromedioDiarioSoja" />
+                <ScalarProperty Name="CotizacionDolar" ColumnName="CotizacionDolar" />
+                <ScalarProperty Name="LluviaAnualSantaFe" ColumnName="LluviaAnualSantaFe" />
+                <ScalarProperty Name="LluviaMensualSantaFe" ColumnName="LluviaMensualSantaFe" />
+                <ScalarProperty Name="LluviaDiariaSantaFe" ColumnName="LluviaDiariaSantaFe" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LluviasRegistradas">
+            <EntityTypeMapping TypeName="UnirModel.LluviasRegistradas">
+              <MappingFragment StoreEntitySet="LluviasRegistradas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Registro" ColumnName="Registro" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promedio_diario_maiz">
+            <EntityTypeMapping TypeName="UnirModel.Promedio_diario_maiz">
+              <MappingFragment StoreEntitySet="Promedio_diario_maiz">
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="PromedioMensual" ColumnName="PromedioMensual" />
+                <ScalarProperty Name="PromedioAnual" ColumnName="PromedioAnual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promedio_diario_soja">
+            <EntityTypeMapping TypeName="UnirModel.Promedio_diario_soja">
+              <MappingFragment StoreEntitySet="Promedio_diario_soja">
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="PromedioMensual" ColumnName="PromedioMensual" />
+                <ScalarProperty Name="PromedioAnual" ColumnName="PromedioAnual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promedio_diario_trigo">
+            <EntityTypeMapping TypeName="UnirModel.Promedio_diario_trigo">
+              <MappingFragment StoreEntitySet="Promedio_diario_trigo">
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="PromedioMensual" ColumnName="PromedioMensual" />
+                <ScalarProperty Name="PromedioAnual" ColumnName="PromedioAnual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CotizacionesDolar">
+            <EntityTypeMapping TypeName="UnirModel.CotizacionesDolar">
+              <MappingFragment StoreEntitySet="CotizacionesDolar">
+                <ScalarProperty Name="Venta" ColumnName="Venta" />
+                <ScalarProperty Name="Compra" ColumnName="Compra" />
+                <ScalarProperty Name="BilleteVenta" ColumnName="BilleteVenta" />
+                <ScalarProperty Name="BilleteCompra" ColumnName="BilleteCompra" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="UnirModel.Customers">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LluviasAnuales">
+            <EntityTypeMapping TypeName="UnirModel.LluviasAnuales">
+              <MappingFragment StoreEntitySet="LluviasAnuales">
+                <ScalarProperty Name="PromedioMensual" ColumnName="PromedioMensual" />
+                <ScalarProperty Name="TotalAnual" ColumnName="TotalAnual" />
+                <ScalarProperty Name="Diciembre" ColumnName="Diciembre" />
+                <ScalarProperty Name="Noviembre" ColumnName="Noviembre" />
+                <ScalarProperty Name="Octubre" ColumnName="Octubre" />
+                <ScalarProperty Name="Septiembre" ColumnName="Septiembre" />
+                <ScalarProperty Name="Agosto" ColumnName="Agosto" />
+                <ScalarProperty Name="Julio" ColumnName="Julio" />
+                <ScalarProperty Name="Junio" ColumnName="Junio" />
+                <ScalarProperty Name="Mayo" ColumnName="Mayo" />
+                <ScalarProperty Name="Abril" ColumnName="Abril" />
+                <ScalarProperty Name="Marzo" ColumnName="Marzo" />
+                <ScalarProperty Name="Febrero" ColumnName="Febrero" />
+                <ScalarProperty Name="Enero" ColumnName="Enero" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LluviasAnualesBuenosAires">
+            <EntityTypeMapping TypeName="UnirModel.LluviasAnualesBuenosAires">
+              <MappingFragment StoreEntitySet="LluviasAnualesBuenosAires">
+                <ScalarProperty Name="PromedioMensual" ColumnName="PromedioMensual" />
+                <ScalarProperty Name="TotalAnual" ColumnName="TotalAnual" />
+                <ScalarProperty Name="Diciembre" ColumnName="Diciembre" />
+                <ScalarProperty Name="Noviembre" ColumnName="Noviembre" />
+                <ScalarProperty Name="Octubre" ColumnName="Octubre" />
+                <ScalarProperty Name="Septiembre" ColumnName="Septiembre" />
+                <ScalarProperty Name="Agosto" ColumnName="Agosto" />
+                <ScalarProperty Name="Julio" ColumnName="Julio" />
+                <ScalarProperty Name="Junio" ColumnName="Junio" />
+                <ScalarProperty Name="Mayo" ColumnName="Mayo" />
+                <ScalarProperty Name="Abril" ColumnName="Abril" />
+                <ScalarProperty Name="Marzo" ColumnName="Marzo" />
+                <ScalarProperty Name="Febrero" ColumnName="Febrero" />
+                <ScalarProperty Name="Enero" ColumnName="Enero" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LluviasAnualesSantaFe">
+            <EntityTypeMapping TypeName="UnirModel.LluviasAnualesSantaFe">
+              <MappingFragment StoreEntitySet="LluviasAnualesSantaFe">
+                <ScalarProperty Name="PromedioMensual" ColumnName="PromedioMensual" />
+                <ScalarProperty Name="TotalAnual" ColumnName="TotalAnual" />
+                <ScalarProperty Name="Diciembre" ColumnName="Diciembre" />
+                <ScalarProperty Name="Noviembre" ColumnName="Noviembre" />
+                <ScalarProperty Name="Octubre" ColumnName="Octubre" />
+                <ScalarProperty Name="Septiembre" ColumnName="Septiembre" />
+                <ScalarProperty Name="Agosto" ColumnName="Agosto" />
+                <ScalarProperty Name="Julio" ColumnName="Julio" />
+                <ScalarProperty Name="Junio" ColumnName="Junio" />
+                <ScalarProperty Name="Mayo" ColumnName="Mayo" />
+                <ScalarProperty Name="Abril" ColumnName="Abril" />
+                <ScalarProperty Name="Marzo" ColumnName="Marzo" />
+                <ScalarProperty Name="Febrero" ColumnName="Febrero" />
+                <ScalarProperty Name="Enero" ColumnName="Enero" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LluviasDiariasBuenosAires">
+            <EntityTypeMapping TypeName="UnirModel.LluviasDiariasBuenosAires">
+              <MappingFragment StoreEntitySet="LluviasDiariasBuenosAires">
+                <ScalarProperty Name="Diciembre" ColumnName="Diciembre" />
+                <ScalarProperty Name="Noviembre" ColumnName="Noviembre" />
+                <ScalarProperty Name="Octubre" ColumnName="Octubre" />
+                <ScalarProperty Name="Septiembre" ColumnName="Septiembre" />
+                <ScalarProperty Name="Agosto" ColumnName="Agosto" />
+                <ScalarProperty Name="Julio" ColumnName="Julio" />
+                <ScalarProperty Name="Junio" ColumnName="Junio" />
+                <ScalarProperty Name="Mayo" ColumnName="Mayo" />
+                <ScalarProperty Name="Abril" ColumnName="Abril" />
+                <ScalarProperty Name="Marzo" ColumnName="Marzo" />
+                <ScalarProperty Name="Febrero" ColumnName="Febrero" />
+                <ScalarProperty Name="Enero" ColumnName="Enero" />
+                <ScalarProperty Name="Dia" ColumnName="Dia" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LluviasDiariasSantaFe">
+            <EntityTypeMapping TypeName="UnirModel.LluviasDiariasSantaFe">
+              <MappingFragment StoreEntitySet="LluviasDiariasSantaFe">
+                <ScalarProperty Name="Diciembre" ColumnName="Diciembre" />
+                <ScalarProperty Name="Noviembre" ColumnName="Noviembre" />
+                <ScalarProperty Name="Octubre" ColumnName="Octubre" />
+                <ScalarProperty Name="Septiembre" ColumnName="Septiembre" />
+                <ScalarProperty Name="Agosto" ColumnName="Agosto" />
+                <ScalarProperty Name="Julio" ColumnName="Julio" />
+                <ScalarProperty Name="Junio" ColumnName="Junio" />
+                <ScalarProperty Name="Mayo" ColumnName="Mayo" />
+                <ScalarProperty Name="Abril" ColumnName="Abril" />
+                <ScalarProperty Name="Marzo" ColumnName="Marzo" />
+                <ScalarProperty Name="Febrero" ColumnName="Febrero" />
+                <ScalarProperty Name="Enero" ColumnName="Enero" />
+                <ScalarProperty Name="Dia" ColumnName="Dia" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
