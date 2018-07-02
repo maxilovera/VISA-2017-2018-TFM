@@ -126,40 +126,613 @@ namespace TFM
                 //    Console.WriteLine(item.Fecha.ToShortDateString());
                 //}
 
-                //registros de datos
-                //var registros = entities.Datos.ToList();
+                VariacionesTrigo(entities);
+                VariacionesSoja(entities);
+                VariacionesMaiz(entities);
 
-                //foreach (var item in registros.Where(x=>x.PrecioPromedioDiarioMaizUSD!=null))
+                var registros = entities.Datos.ToList();
+
+                //foreach (var item in registros)
                 //{
-                //    //Datos del dia anterior
-                //    var diaAnterior = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(1).FirstOrDefault();
-                //    //Datos de tres dias anteriores
-                //    var tresDiaAnterior = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(3).ToList();
-                //    //Datos de siete dias anteriores
-                //    var sieteDiaAnterior = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(7).ToList();
+                //    //obtencion de datos historicos
+                //    var valoresNoventa = registros.Where(x => x.Fecha >= item.Fecha.AddDays(-90) && x.Fecha < item.Fecha).ToList();
+                //    var valoresSesenta = registros.Where(x => x.Fecha >= item.Fecha.AddDays(-60) && x.Fecha < item.Fecha).ToList();
+                //    var valoresCuarentaCinco = registros.Where(x => x.Fecha >= item.Fecha.AddDays(-45) && x.Fecha < item.Fecha).ToList();
+                //    var valoresTreinta = registros.Where(x => x.Fecha >= item.Fecha.AddDays(-30) && x.Fecha < item.Fecha).ToList();
+                //    var valoresQuince = registros.Where(x => x.Fecha >= item.Fecha.AddDays(-15) && x.Fecha < item.Fecha).ToList();
+                //    var valoresSiete = registros.Where(x => x.Fecha >= item.Fecha.AddDays(-7) && x.Fecha < item.Fecha).ToList();
 
-                //    item.VariacionTrigoDiaAnterior = 1;
-                //    item.VariacionSojaDiaAnterior = 1;
-                //    item.VariacionMaizDiaAnterior = 1;
+                //    //Actualizacion de datos
+                //    item.PrecioPromedioTreintaDiasMaiz = valoresTreinta.Where(x=>x.PrecioPromedioDiarioMaizUSD!=null)
+                //        .Select(x => x.PrecioPromedioDiarioMaizUSD).Average() ?? 0;
+                //    item.PrecioPromedioTreintaDiasSoja = valoresTreinta.Where(x => x.PrecioPromedioDiarioMaizUSD != null)
+                //        .Select(x => x.PrecioPromedioDiarioSojaUSD).Average() ?? 0;
+                //    item.PrecioPromedioTreintaDiasTrigo = valoresTreinta.Where(x => x.PrecioPromedioDiarioMaizUSD != null)
+                //        .Select(x => x.PrecioPromedioDiarioTrigoUSD).Average() ?? 0;
 
-                //    if (diaAnterior != null)
-                //    {
-                //        item.VariacionTrigoDiaAnterior = item.PrecioPromedioDiarioTrigoUSD / diaAnterior.PrecioPromedioDiarioTrigoUSD - 1 ?? 1;
-                //        item.VariacionSojaDiaAnterior = item.PrecioPromedioDiarioSojaUSD / diaAnterior.PrecioPromedioDiarioSojaUSD - 1 ?? 1;
-                //        item.VariacionMaizDiaAnterior = item.PrecioPromedioDiarioMaizUSD / diaAnterior.PrecioPromedioDiarioMaizUSD - 1 ?? 1;
-                //    }
-                    
-                //    //Calculo de la variación a tres días
-                //    item.VariacionTrigoTresDias = item.PrecioPromedioDiarioTrigoUSD / tresDiaAnterior.Average(x => x.PrecioPromedioDiarioTrigoUSD) - 1 ?? 1;
-                //    item.VariacionSojaTresDias = item.PrecioPromedioDiarioSojaUSD / tresDiaAnterior.Average(x => x.PrecioPromedioDiarioSojaUSD) - 1 ?? 1;
-                //    item.VariacionMaizTresDia = item.PrecioPromedioDiarioMaizUSD / tresDiaAnterior.Average(x => x.PrecioPromedioDiarioMaizUSD) - 1 ?? 1;
-                //    //Calculo de la variacion a siete días
-                //    item.VariacionTrigoSieteDias = item.PrecioPromedioDiarioTrigoUSD / sieteDiaAnterior.Average(x => x.PrecioPromedioDiarioTrigoUSD) - 1 ?? 1;
-                //    item.VariacionSojaSieteDias = item.PrecioPromedioDiarioSojaUSD / sieteDiaAnterior.Average(x => x.PrecioPromedioDiarioSojaUSD) - 1 ?? 1;
-                //    item.VariacionMaizSieteDias = item.PrecioPromedioDiarioMaizUSD / sieteDiaAnterior.Average(x => x.PrecioPromedioDiarioMaizUSD) - 1 ?? 1;
+                //    item.PrecioPromedioSesentaDiasMaiz = valoresSesenta.Where(x => x.PrecioPromedioDiarioMaizUSD != null)
+                //        .Select(x => x.PrecioPromedioDiarioMaizUSD).Average() ?? 0;
+                //    item.PrecioPromedioSesentaDiasSoja = valoresSesenta.Where(x => x.PrecioPromedioDiarioMaizUSD != null)
+                //        .Select(x => x.PrecioPromedioDiarioSojaUSD).Average() ?? 0;
+                //    item.PrecioPromedioSesentaDiasTrigo = valoresSesenta.Where(x => x.PrecioPromedioDiarioMaizUSD != null)
+                //        .Select(x => x.PrecioPromedioDiarioTrigoUSD).Average() ?? 0;
 
-                //    entities.SaveChanges(); //actualizado de registro
+                //    item.PrecioPromedioNoventaDiasMaiz = valoresNoventa.Where(x => x.PrecioPromedioDiarioMaizUSD != null)
+                //        .Select(x => x.PrecioPromedioDiarioMaizUSD).Average() ?? 0;
+                //    item.PrecioPromedioNoventaDiasSoja = valoresNoventa.Where(x => x.PrecioPromedioDiarioMaizUSD != null)
+                //        .Select(x => x.PrecioPromedioDiarioSojaUSD).Average() ?? 0;
+                //    item.PrecioPromedioNoventaDiasTrigo = valoresNoventa.Where(x => x.PrecioPromedioDiarioMaizUSD != null)
+                //        .Select(x => x.PrecioPromedioDiarioTrigoUSD).Average() ?? 0;
+
+                //    item.LluviaDiariaAcumuladaSieteDiasSantaFe = valoresSiete.Sum(x => x.LluviaDiariaSantaFe);
+                //    item.LluviaDiariaAcumuladaSieteDiasBuenosAires = valoresSiete.Sum(x => x.LluviaDiariaBuenosAires);
+                //    item.LluviaDiariaAcumuladaSieteDiasCordoba = valoresSiete.Sum(x => x.LluviaDiariaCordoba);
+
+                //    item.LluviaDiariaAcumuladaQuinceDiasSantaFe = valoresQuince.Sum(x => x.LluviaDiariaSantaFe);
+                //    item.LluviaDiariaAcumuladaQuinceDiasBuenosAires = valoresQuince.Sum(x => x.LluviaDiariaBuenosAires);
+                //    item.LluviaDiariaAcumuladaQuinceDiasCordoba = valoresQuince.Sum(x => x.LluviaDiariaCordoba);
+
+                //    item.LluviaDiariaAcumuladaTreintaDiasSantaFe = valoresTreinta.Sum(x => x.LluviaDiariaSantaFe);
+                //    item.LluviaDiariaAcumuladaTreintaDiasBuenosAires = valoresTreinta.Sum(x => x.LluviaDiariaBuenosAires);
+                //    item.LluviaDiariaAcumuladaTreintaDiasCordoba = valoresTreinta.Sum(x => x.LluviaDiariaCordoba);
+
+                //    item.LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe = valoresCuarentaCinco.Sum(x => x.LluviaDiariaSantaFe);
+                //    item.LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires = valoresCuarentaCinco.Sum(x => x.LluviaDiariaBuenosAires);
+                //    item.LluviaDiariaAcumuladaCuarentaCincoDiasCordoba = valoresCuarentaCinco.Sum(x => x.LluviaDiariaCordoba);
+
+                //    item.LluviaDiariaAcumuladaSesentaDiasSantaFe =  valoresSesenta.Sum(x => x.LluviaDiariaSantaFe);
+                //    item.LluviaDiariaAcumuladaSesentaDiasBuenosAires = valoresSesenta.Sum(x => x.LluviaDiariaBuenosAires);
+                //    item.LluviaDiariaAcumuladaSesentaDiasCordoba = valoresSesenta.Sum(x => x.LluviaDiariaCordoba);
+
+                //    entities.SaveChanges();
+
+                //    Console.WriteLine(item.Fecha.ToString());
                 //}
+                
+                //ActualizacionLluviasCordoba(entities, registros);
+
+                GenerarArchivoMaiz24(registros);
+                GenerarArchivoMaiz72(registros);
+                GenerarArchivoMaiz120(registros);
+
+                GenerarArchivoSoja24(registros);
+                GenerarArchivoSoja72(registros);
+                GenerarArchivoSoja120(registros);
+
+                GenerarArchivoTrigo24(registros);
+                GenerarArchivoTrigo72(registros);
+                GenerarArchivoTrigo120(registros);
+
+
+            }
+        }
+
+        private static void VariacionesTrigo(UnirEntities entities)
+        {
+            //registros de datos
+            var registros = entities.Datos.ToList();
+
+            foreach (var item in registros)
+            {
+                if (item.PrecioPromedioDiarioTrigoUSD == null)
+                {
+                    item.VariacionTrigoDiaAnterior = 0;
+                    item.VariacionTrigoTresDias = 0;
+                    item.VariacionTrigoSieteDias = 0;                    
+                }
+                else
+                {
+                    //Datos del dia anterior
+                    var diaAnterior = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(1).FirstOrDefault();
+                    //Datos de tres dias anteriores
+                    var tresDiaAnterior = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(3).ToList();
+                    //Datos de siete dias anteriores
+                    var sieteDiaAnterior = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(7).ToList();
+
+                    item.VariacionTrigoDiaAnterior = 0;
+
+                    if (diaAnterior != null)
+                    {
+                        item.VariacionTrigoDiaAnterior = item.PrecioPromedioDiarioTrigoUSD / diaAnterior.PrecioPromedioDiarioTrigoUSD - 1 ?? 0;
+                    }
+
+                    //Calculo de la variación a tres días
+                    item.VariacionTrigoTresDias = item.PrecioPromedioDiarioTrigoUSD / tresDiaAnterior.Average(x => x.PrecioPromedioDiarioTrigoUSD) - 1 ?? 0;
+                    //Calculo de la variacion a siete días
+                    item.VariacionTrigoSieteDias = item.PrecioPromedioDiarioTrigoUSD / sieteDiaAnterior.Average(x => x.PrecioPromedioDiarioTrigoUSD) - 1 ?? 0;                    
+                }
+
+                entities.SaveChanges(); //actualizado de registro
+                Console.WriteLine($"Actualizado trigo {item.Fecha.ToString()}");
+            }
+        }
+
+        private static void VariacionesMaiz(UnirEntities entities)
+        {
+            //registros de datos
+            var registros = entities.Datos.ToList();
+
+            foreach (var item in registros)
+            {
+                if (item.PrecioPromedioDiarioMaizUSD == null)
+                {
+                    item.VariacionMaizDiaAnterior = 0;
+                    item.VariacionMaizTresDia = 0;
+                    item.VariacionMaizSieteDias = 0;
+                }
+                else
+                {
+                    //Datos del dia anterior
+                    var diaAnterior = registros.Where(x => x.PrecioPromedioDiarioMaizUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(1).FirstOrDefault();
+                    //Datos de tres dias anteriores
+                    var tresDiaAnterior = registros.Where(x => x.PrecioPromedioDiarioMaizUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(3).ToList();
+                    //Datos de siete dias anteriores
+                    var sieteDiaAnterior = registros.Where(x => x.PrecioPromedioDiarioMaizUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(7).ToList();
+
+                    item.VariacionMaizDiaAnterior = 0;
+
+                    if (diaAnterior != null)
+                    {
+                        item.VariacionMaizDiaAnterior = item.PrecioPromedioDiarioMaizUSD / diaAnterior.PrecioPromedioDiarioMaizUSD - 1 ?? 0;
+                    }
+
+                    //Calculo de la variación a tres días
+                    item.VariacionMaizTresDia = item.PrecioPromedioDiarioMaizUSD / tresDiaAnterior.Average(x => x.PrecioPromedioDiarioMaizUSD) - 1 ?? 0;
+                    //Calculo de la variacion a siete días
+                    item.VariacionMaizSieteDias = item.PrecioPromedioDiarioMaizUSD / sieteDiaAnterior.Average(x => x.PrecioPromedioDiarioMaizUSD) - 1 ?? 0;
+                }
+
+                entities.SaveChanges(); //actualizado de registro
+
+                Console.WriteLine($"Actualizado maiz {item.Fecha.ToString()}");
+            }
+        }
+
+        private static void VariacionesSoja(UnirEntities entities)
+        {
+            //registros de datos
+            var registros = entities.Datos.ToList();
+
+            foreach (var item in registros)
+            {
+                if (item.PrecioPromedioDiarioSojaUSD == null)
+                {
+                    item.VariacionSojaDiaAnterior = 0;
+                    item.VariacionSojaTresDias = 0;
+                    item.VariacionSojaSieteDias = 0;
+                }
+                else
+                {
+                    //Datos del dia anterior
+                    var diaAnterior = registros.Where(x => x.PrecioPromedioDiarioSojaUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(1).FirstOrDefault();
+                    //Datos de tres dias anteriores
+                    var tresDiaAnterior = registros.Where(x => x.PrecioPromedioDiarioSojaUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(3).ToList();
+                    //Datos de siete dias anteriores
+                    var sieteDiaAnterior = registros.Where(x => x.PrecioPromedioDiarioSojaUSD != null).Where(x => x.Fecha < item.Fecha).OrderByDescending(x => x.Fecha).Take(7).ToList();
+
+                    item.VariacionSojaDiaAnterior = 0;
+
+                    if (diaAnterior != null)
+                    {
+                        item.VariacionSojaDiaAnterior = item.PrecioPromedioDiarioSojaUSD / diaAnterior.PrecioPromedioDiarioSojaUSD - 1 ?? 0;
+                    }
+
+                    //Calculo de la variación a tres días
+                    item.VariacionSojaTresDias = item.PrecioPromedioDiarioSojaUSD / tresDiaAnterior.Average(x => x.PrecioPromedioDiarioSojaUSD) - 1 ?? 0;
+                    //Calculo de la variacion a siete días
+                    item.VariacionSojaSieteDias = item.PrecioPromedioDiarioSojaUSD / sieteDiaAnterior.Average(x => x.PrecioPromedioDiarioSojaUSD) - 1 ?? 0;
+                }
+
+                entities.SaveChanges(); //actualizado de registro
+
+                Console.WriteLine($"Actualizado Soja {item.Fecha.ToString()}");
+            }
+        }
+
+        private static void ActualizacionLluviasCordoba(UnirEntities entities, List<Datos> registros)
+        {
+            //Iteracion de filas
+            foreach (var item in registros)
+            {
+                //promedio mensual
+                var mensual = registros.Where(x => x.Fecha.Month == item.Fecha.Month && x.Fecha.Year == item.Fecha.Year)
+                    .Select(x => x.LluviaDiariaCordoba).Average() ?? 0;
+
+                //promedio anual
+                var anual = registros.Where(x => x.Fecha.Year == item.Fecha.Year).Select(x => x.LluviaDiariaCordoba).Average() ?? 0;
+
+                //actualizacion de datos del registro
+                item.LLuviaMensualCordoba = mensual;
+                item.LluviaAnualCordoba = anual;
+
+                entities.SaveChanges();
+
+                Console.WriteLine($"Actualizado {item.Fecha.ToString()}");
+            }
+        }
+
+        private static void GenerarArchivoMaiz120(List<Datos> registros)
+        {
+            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "maiz-120hs.csv"))
+            {
+                registros = registros.Where(x => x.PrecioPromedioDiarioMaizUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
+                                                                                                  //escritura del header
+                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioMaizUSD,SuperficieSembradaMaizSantaFe," +
+                    $"SuperficieSembradaMaizBuenosAires," +
+                    $"SuperficieSembradaMaizCordoba,SuperficieCosechadaMaizSantaFe," +
+                    $"SuperficieCosechadaMaizBuenosAires,SuperficieCosechadaMaizCordoba,ProduccionMaizSantaFe,ProduccionMaizBuenosAires,ProduccionMaizCordoba," +
+                    $"RendimientoMaizSantaFe,RendimientoMaizBuenosAires," +
+                    $"RendimientoMaizCordoba,PromedioIncendiosMensualesSantaFe,PromedioIncendiosMensualesBuenosAires,PromedioIncendioMensualesCordoba," +
+                    $"VariacionMaizDiaAnterior,VariacionMaizTresDia," +
+                    $"VariacionMaizSieteDias,LluviaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaTreintaDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaTreintaDiasBuenosAires,LluviaDiariaAcumuladaTreintaDiasCordoba," +
+                    $"LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe,LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires,LluviaDiariaAcumuladaCuarentaCincoDiasCordoba," +
+                    $"LluviaDiariaAcumuladaSesentaDiasSantaFe,LluviaDiariaAcumuladaSesentaDiasBuenosAires,LluviaDiariaAcumuladaSesentaDiasCordoba," +
+                    $"PrecioPromedioTreintaDiasMaiz,PrecioPromedioSesentaDiasMaiz,PrecioPromedioNoventaDiasMaiz,PrecioRealDiaSiguiente");
+
+                for (int i = 0; i < registros.Count - 5; i++) //Vamos hasta el anteultimo registro para obtener el precio real del dia siguiente
+                {
+                    var item = registros[i];
+                    var itemPredict = registros[i + 5]; //atributo de salida. Precio del cultivo a 24 horas
+                                                        //Escribimos la linea del archivo
+                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
+                        $"{item.PrecioPromedioDiarioMaizUSD}," +
+                            $"{item.SuperficieSembradaMaizSantaFe},{item.SuperficieSembradaMaizBuenosAires},{item.SuperficieSembradaMaizCordoba},{item.SuperficieCosechadaMaizSantaFe}," +
+                            $"{item.SuperficieCosechadaMaizBuenosAires}," +
+                            $"{item.SuperficieCosechadaMaizCordoba},{item.ProduccionMaizSantaFe},{item.ProduccionMaizBuenosAires},{item.ProduccionMaizCordoba},{item.RendimientoMaizSantaFe}," +
+                            $"{item.RendimientoMaizBuenosAires},{item.RendimientoMaizCordoba},{item.PromedioIncendiosMensualesSantaFe},{item.PromedioIncendiosMensualesBuenosAires}," +
+                            $"{item.PromedioIncendiosMensualesCordoba},{item.VariacionMaizDiaAnterior},{item.VariacionMaizTresDia},{item.VariacionMaizSieteDias},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaTreintaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaTreintaDiasBuenosAires},{item.LluviaDiariaAcumuladaTreintaDiasCordoba},{item.LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires},{item.LluviaDiariaAcumuladaCuarentaCincoDiasCordoba},{item.LluviaDiariaAcumuladaSesentaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSesentaDiasBuenosAires},{item.LluviaDiariaAcumuladaSesentaDiasCordoba},{item.PrecioPromedioTreintaDiasMaiz}," +
+                            $"{item.PrecioPromedioSesentaDiasMaiz},{item.PrecioPromedioNoventaDiasMaiz},{itemPredict.PrecioPromedioDiarioMaizUSD}");
+                }
+            }
+        }
+
+        private static void GenerarArchivoMaiz72(List<Datos> registros)
+        {
+            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "maiz-72hs.csv"))
+            {
+                registros = registros.Where(x => x.PrecioPromedioDiarioMaizUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
+                                                                                                  //escritura del header
+                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioMaizUSD,SuperficieSembradaMaizSantaFe," +
+                    $"SuperficieSembradaMaizBuenosAires," +
+                    $"SuperficieSembradaMaizCordoba,SuperficieCosechadaMaizSantaFe," +
+                    $"SuperficieCosechadaMaizBuenosAires,SuperficieCosechadaMaizCordoba,ProduccionMaizSantaFe,ProduccionMaizBuenosAires,ProduccionMaizCordoba," +
+                    $"RendimientoMaizSantaFe,RendimientoMaizBuenosAires," +
+                    $"RendimientoMaizCordoba,PromedioIncendiosMensualesSantaFe,PromedioIncendiosMensualesBuenosAires,PromedioIncendioMensualesCordoba," +
+                    $"VariacionMaizDiaAnterior,VariacionMaizTresDia," +
+                    $"VariacionMaizSieteDias,LluviaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaTreintaDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaTreintaDiasBuenosAires,LluviaDiariaAcumuladaTreintaDiasCordoba," +
+                    $"LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe,LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires,LluviaDiariaAcumuladaCuarentaCincoDiasCordoba," +
+                    $"LluviaDiariaAcumuladaSesentaDiasSantaFe,LluviaDiariaAcumuladaSesentaDiasBuenosAires,LluviaDiariaAcumuladaSesentaDiasCordoba," +
+                    $"PrecioPromedioTreintaDiasMaiz,PrecioPromedioSesentaDiasMaiz,PrecioPromedioNoventaDiasMaiz,PrecioRealDiaSiguiente");
+
+                for (int i = 0; i < registros.Count - 3; i++) //Vamos hasta el anteultimo registro para obtener el precio real del dia siguiente
+                {
+                    var item = registros[i];
+                    var itemPredict = registros[i + 3]; //atributo de salida. Precio del cultivo a 24 horas
+                                                        //Escribimos la linea del archivo
+                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioMaizUSD}," +
+                            $"{item.SuperficieSembradaMaizSantaFe},{item.SuperficieSembradaMaizBuenosAires},{item.SuperficieSembradaMaizCordoba},{item.SuperficieCosechadaMaizSantaFe}," +
+                            $"{item.SuperficieCosechadaMaizBuenosAires}," +
+                            $"{item.SuperficieCosechadaMaizCordoba},{item.ProduccionMaizSantaFe},{item.ProduccionMaizBuenosAires},{item.ProduccionMaizCordoba},{item.RendimientoMaizSantaFe}," +
+                            $"{item.RendimientoMaizBuenosAires},{item.RendimientoMaizCordoba},{item.PromedioIncendiosMensualesSantaFe},{item.PromedioIncendiosMensualesBuenosAires}," +
+                            $"{item.PromedioIncendiosMensualesCordoba},{item.VariacionMaizDiaAnterior},{item.VariacionMaizTresDia},{item.VariacionMaizSieteDias},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaTreintaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaTreintaDiasBuenosAires},{item.LluviaDiariaAcumuladaTreintaDiasCordoba},{item.LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires},{item.LluviaDiariaAcumuladaCuarentaCincoDiasCordoba},{item.LluviaDiariaAcumuladaSesentaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSesentaDiasBuenosAires},{item.LluviaDiariaAcumuladaSesentaDiasCordoba},{item.PrecioPromedioTreintaDiasMaiz}," +
+                            $"{item.PrecioPromedioSesentaDiasMaiz},{item.PrecioPromedioNoventaDiasMaiz},{itemPredict.PrecioPromedioDiarioMaizUSD}");
+                }
+            }
+        }
+
+        private static void GenerarArchivoMaiz24(List<Datos> registros)
+        {
+            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "maiz-24hs.csv"))
+            {
+                registros = registros.Where(x => x.PrecioPromedioDiarioMaizUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
+                                                                                                  //escritura del header
+                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioMaizUSD,SuperficieSembradaMaizSantaFe," +
+                    $"SuperficieSembradaMaizBuenosAires," +
+                    $"SuperficieSembradaMaizCordoba,SuperficieCosechadaMaizSantaFe," +
+                    $"SuperficieCosechadaMaizBuenosAires,SuperficieCosechadaMaizCordoba,ProduccionMaizSantaFe,ProduccionMaizBuenosAires,ProduccionMaizCordoba," +
+                    $"RendimientoMaizSantaFe,RendimientoMaizBuenosAires," +
+                    $"RendimientoMaizCordoba,PromedioIncendiosMensualesSantaFe,PromedioIncendiosMensualesBuenosAires,PromedioIncendioMensualesCordoba," +
+                    $"VariacionMaizDiaAnterior,VariacionMaizTresDia," +
+                    $"VariacionMaizSieteDias,LluviaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaTreintaDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaTreintaDiasBuenosAires,LluviaDiariaAcumuladaTreintaDiasCordoba," +
+                    $"LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe,LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires,LluviaDiariaAcumuladaCuarentaCincoDiasCordoba," +
+                    $"LluviaDiariaAcumuladaSesentaDiasSantaFe,LluviaDiariaAcumuladaSesentaDiasBuenosAires,LluviaDiariaAcumuladaSesentaDiasCordoba," +
+                    $"PrecioPromedioTreintaDiasMaiz,PrecioPromedioSesentaDiasMaiz,PrecioPromedioNoventaDiasMaiz,PrecioRealDiaSiguiente");
+
+                for (int i = 0; i < registros.Count - 1; i++) //Vamos hasta el anteultimo registro para obtener el precio real del dia siguiente
+                {
+                    var item = registros[i];
+                    var itemPredict = registros[i + 1]; //atributo de salida. Precio del cultivo a 24 horas
+                                                        //Escribimos la linea del archivo
+                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioMaizUSD}," +
+                            $"{item.SuperficieSembradaMaizSantaFe},{item.SuperficieSembradaMaizBuenosAires},{item.SuperficieSembradaMaizCordoba},{item.SuperficieCosechadaMaizSantaFe}," +
+                            $"{item.SuperficieCosechadaMaizBuenosAires}," +
+                            $"{item.SuperficieCosechadaMaizCordoba},{item.ProduccionMaizSantaFe},{item.ProduccionMaizBuenosAires},{item.ProduccionMaizCordoba},{item.RendimientoMaizSantaFe}," +
+                            $"{item.RendimientoMaizBuenosAires},{item.RendimientoMaizCordoba},{item.PromedioIncendiosMensualesSantaFe},{item.PromedioIncendiosMensualesBuenosAires}," +
+                            $"{item.PromedioIncendiosMensualesCordoba},{item.VariacionMaizDiaAnterior},{item.VariacionMaizTresDia},{item.VariacionMaizSieteDias},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaTreintaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaTreintaDiasBuenosAires},{item.LluviaDiariaAcumuladaTreintaDiasCordoba},{item.LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires},{item.LluviaDiariaAcumuladaCuarentaCincoDiasCordoba},{item.LluviaDiariaAcumuladaSesentaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSesentaDiasBuenosAires},{item.LluviaDiariaAcumuladaSesentaDiasCordoba},{item.PrecioPromedioTreintaDiasMaiz}," +
+                            $"{item.PrecioPromedioSesentaDiasMaiz},{item.PrecioPromedioNoventaDiasMaiz},{itemPredict.PrecioPromedioDiarioMaizUSD}");
+                }
+            }
+        }
+
+        //Soja
+        private static void GenerarArchivoSoja120(List<Datos> registros)
+        {
+            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "Soja-120hs.csv"))
+            {
+                registros = registros.Where(x => x.PrecioPromedioDiarioSojaUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
+                                                                                                  //escritura del header
+                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioSojaUSD,SuperficieSembradaSojaSantaFe," +
+                    $"SuperficieSembradaSojaBuenosAires," +
+                    $"SuperficieSembradaSojaCordoba,SuperficieCosechadaSojaSantaFe," +
+                    $"SuperficieCosechadaSojaBuenosAires,SuperficieCosechadaSojaCordoba,ProduccionSojaSantaFe,ProduccionSojaBuenosAires,ProduccionSojaCordoba," +
+                    $"RendimientoSojaSantaFe,RendimientoSojaBuenosAires," +
+                    $"RendimientoSojaCordoba,PromedioIncendiosMensualesSantaFe,PromedioIncendiosMensualesBuenosAires,PromedioIncendioMensualesCordoba," +
+                    $"VariacionSojaDiaAnterior,VariacionSojaTresDia," +
+                    $"VariacionSojaSieteDias,LluviaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaTreintaDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaTreintaDiasBuenosAires,LluviaDiariaAcumuladaTreintaDiasCordoba," +
+                    $"LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe,LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires,LluviaDiariaAcumuladaCuarentaCincoDiasCordoba," +
+                    $"LluviaDiariaAcumuladaSesentaDiasSantaFe,LluviaDiariaAcumuladaSesentaDiasBuenosAires,LluviaDiariaAcumuladaSesentaDiasCordoba," +
+                    $"PrecioPromedioTreintaDiasSoja,PrecioPromedioSesentaDiasSoja,PrecioPromedioNoventaDiasSoja,PrecioRealDiaSiguiente");
+
+                for (int i = 0; i < registros.Count - 5; i++) //Vamos hasta el anteultimo registro para obtener el precio real del dia siguiente
+                {
+                    var item = registros[i];
+                    var itemPredict = registros[i + 5]; //atributo de salida. Precio del cultivo a 24 horas
+                                                        //Escribimos la linea del archivo
+                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
+                        $"{item.PrecioPromedioDiarioSojaUSD}," +
+                            $"{item.SuperficieSembradaSojaSantaFe},{item.SuperficieSembradaSojaBuenosAires},{item.SuperficieSembradaSojaCordoba},{item.SuperficieCosechadaSojaSantaFe}," +
+                            $"{item.SuperficieCosechadaSojaBuenosAires}," +
+                            $"{item.SuperficieCosechadaSojaCordoba},{item.ProduccionSojaSantaFe},{item.ProduccionSojaBuenosAires},{item.ProduccionSojaCordoba},{item.RendimientoSojaSantaFe}," +
+                            $"{item.RendimientoSojaBuenosAires},{item.RendimientoSojaCordoba},{item.PromedioIncendiosMensualesSantaFe},{item.PromedioIncendiosMensualesBuenosAires}," +
+                            $"{item.PromedioIncendiosMensualesCordoba},{item.VariacionSojaDiaAnterior},{item.VariacionSojaTresDias},{item.VariacionSojaSieteDias},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaTreintaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaTreintaDiasBuenosAires},{item.LluviaDiariaAcumuladaTreintaDiasCordoba},{item.LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires},{item.LluviaDiariaAcumuladaCuarentaCincoDiasCordoba},{item.LluviaDiariaAcumuladaSesentaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSesentaDiasBuenosAires},{item.LluviaDiariaAcumuladaSesentaDiasCordoba},{item.PrecioPromedioTreintaDiasSoja}," +
+                            $"{item.PrecioPromedioSesentaDiasSoja},{item.PrecioPromedioNoventaDiasSoja},{itemPredict.PrecioPromedioDiarioSojaUSD}");
+                }
+            }
+        }
+
+        private static void GenerarArchivoSoja72(List<Datos> registros)
+        {
+            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "Soja-72hs.csv"))
+            {
+                registros = registros.Where(x => x.PrecioPromedioDiarioSojaUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
+                                                                                                  //escritura del header
+                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioSojaUSD,SuperficieSembradaSojaSantaFe," +
+                    $"SuperficieSembradaSojaBuenosAires," +
+                    $"SuperficieSembradaSojaCordoba,SuperficieCosechadaSojaSantaFe," +
+                    $"SuperficieCosechadaSojaBuenosAires,SuperficieCosechadaSojaCordoba,ProduccionSojaSantaFe,ProduccionSojaBuenosAires,ProduccionSojaCordoba," +
+                    $"RendimientoSojaSantaFe,RendimientoSojaBuenosAires," +
+                    $"RendimientoSojaCordoba,PromedioIncendiosMensualesSantaFe,PromedioIncendiosMensualesBuenosAires,PromedioIncendioMensualesCordoba," +
+                    $"VariacionSojaDiaAnterior,VariacionSojaTresDia," +
+                    $"VariacionSojaSieteDias,LluviaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaTreintaDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaTreintaDiasBuenosAires,LluviaDiariaAcumuladaTreintaDiasCordoba," +
+                    $"LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe,LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires,LluviaDiariaAcumuladaCuarentaCincoDiasCordoba," +
+                    $"LluviaDiariaAcumuladaSesentaDiasSantaFe,LluviaDiariaAcumuladaSesentaDiasBuenosAires,LluviaDiariaAcumuladaSesentaDiasCordoba," +
+                    $"PrecioPromedioTreintaDiasSoja,PrecioPromedioSesentaDiasSoja,PrecioPromedioNoventaDiasSoja,PrecioRealDiaSiguiente");
+
+                for (int i = 0; i < registros.Count - 3; i++) //Vamos hasta el anteultimo registro para obtener el precio real del dia siguiente
+                {
+                    var item = registros[i];
+                    var itemPredict = registros[i + 3]; //atributo de salida. Precio del cultivo a 24 horas
+                                                        //Escribimos la linea del archivo
+                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioSojaUSD}," +
+                            $"{item.SuperficieSembradaSojaSantaFe},{item.SuperficieSembradaSojaBuenosAires},{item.SuperficieSembradaSojaCordoba},{item.SuperficieCosechadaSojaSantaFe}," +
+                            $"{item.SuperficieCosechadaSojaBuenosAires}," +
+                            $"{item.SuperficieCosechadaSojaCordoba},{item.ProduccionSojaSantaFe},{item.ProduccionSojaBuenosAires},{item.ProduccionSojaCordoba},{item.RendimientoSojaSantaFe}," +
+                            $"{item.RendimientoSojaBuenosAires},{item.RendimientoSojaCordoba},{item.PromedioIncendiosMensualesSantaFe},{item.PromedioIncendiosMensualesBuenosAires}," +
+                            $"{item.PromedioIncendiosMensualesCordoba},{item.VariacionSojaDiaAnterior},{item.VariacionSojaTresDias},{item.VariacionSojaSieteDias},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaTreintaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaTreintaDiasBuenosAires},{item.LluviaDiariaAcumuladaTreintaDiasCordoba},{item.LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires},{item.LluviaDiariaAcumuladaCuarentaCincoDiasCordoba},{item.LluviaDiariaAcumuladaSesentaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSesentaDiasBuenosAires},{item.LluviaDiariaAcumuladaSesentaDiasCordoba},{item.PrecioPromedioTreintaDiasSoja}," +
+                            $"{item.PrecioPromedioSesentaDiasSoja},{item.PrecioPromedioNoventaDiasSoja},{itemPredict.PrecioPromedioDiarioSojaUSD}");
+                }
+            }
+        }
+
+        private static void GenerarArchivoSoja24(List<Datos> registros)
+        {
+            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "Soja-24hs.csv"))
+            {
+                registros = registros.Where(x => x.PrecioPromedioDiarioSojaUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
+                                                                                                  //escritura del header
+                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioSojaUSD,SuperficieSembradaSojaSantaFe," +
+                    $"SuperficieSembradaSojaBuenosAires," +
+                    $"SuperficieSembradaSojaCordoba,SuperficieCosechadaSojaSantaFe," +
+                    $"SuperficieCosechadaSojaBuenosAires,SuperficieCosechadaSojaCordoba,ProduccionSojaSantaFe,ProduccionSojaBuenosAires,ProduccionSojaCordoba," +
+                    $"RendimientoSojaSantaFe,RendimientoSojaBuenosAires," +
+                    $"RendimientoSojaCordoba,PromedioIncendiosMensualesSantaFe,PromedioIncendiosMensualesBuenosAires,PromedioIncendioMensualesCordoba," +
+                    $"VariacionSojaDiaAnterior,VariacionSojaTresDia," +
+                    $"VariacionSojaSieteDias,LluviaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaTreintaDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaTreintaDiasBuenosAires,LluviaDiariaAcumuladaTreintaDiasCordoba," +
+                    $"LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe,LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires,LluviaDiariaAcumuladaCuarentaCincoDiasCordoba," +
+                    $"LluviaDiariaAcumuladaSesentaDiasSantaFe,LluviaDiariaAcumuladaSesentaDiasBuenosAires,LluviaDiariaAcumuladaSesentaDiasCordoba," +
+                    $"PrecioPromedioTreintaDiasSoja,PrecioPromedioSesentaDiasSoja,PrecioPromedioNoventaDiasSoja,PrecioRealDiaSiguiente");
+
+                for (int i = 0; i < registros.Count - 1; i++) //Vamos hasta el anteultimo registro para obtener el precio real del dia siguiente
+                {
+                    var item = registros[i];
+                    var itemPredict = registros[i + 1]; //atributo de salida. Precio del cultivo a 24 horas
+                                                        //Escribimos la linea del archivo
+                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioSojaUSD}," +
+                            $"{item.SuperficieSembradaSojaSantaFe},{item.SuperficieSembradaSojaBuenosAires},{item.SuperficieSembradaSojaCordoba},{item.SuperficieCosechadaSojaSantaFe}," +
+                            $"{item.SuperficieCosechadaSojaBuenosAires}," +
+                            $"{item.SuperficieCosechadaSojaCordoba},{item.ProduccionSojaSantaFe},{item.ProduccionSojaBuenosAires},{item.ProduccionSojaCordoba},{item.RendimientoSojaSantaFe}," +
+                            $"{item.RendimientoSojaBuenosAires},{item.RendimientoSojaCordoba},{item.PromedioIncendiosMensualesSantaFe},{item.PromedioIncendiosMensualesBuenosAires}," +
+                            $"{item.PromedioIncendiosMensualesCordoba},{item.VariacionSojaDiaAnterior},{item.VariacionSojaTresDias},{item.VariacionSojaSieteDias},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaTreintaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaTreintaDiasBuenosAires},{item.LluviaDiariaAcumuladaTreintaDiasCordoba},{item.LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires},{item.LluviaDiariaAcumuladaCuarentaCincoDiasCordoba},{item.LluviaDiariaAcumuladaSesentaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSesentaDiasBuenosAires},{item.LluviaDiariaAcumuladaSesentaDiasCordoba},{item.PrecioPromedioTreintaDiasSoja}," +
+                            $"{item.PrecioPromedioSesentaDiasSoja},{item.PrecioPromedioNoventaDiasSoja},{itemPredict.PrecioPromedioDiarioSojaUSD}");
+                }
+            }
+        }
+
+        //Trigo        
+        private static void GenerarArchivoTrigo120(List<Datos> registros)
+        {
+            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "Trigo-120hs.csv"))
+            {
+                registros = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
+                                                                                                   //escritura del header
+                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioTrigoUSD,SuperficieSembradaTrigoSantaFe," +
+                    $"SuperficieSembradaTrigoBuenosAires," +
+                    $"SuperficieSembradaTrigoCordoba,SuperficieCosechadaTrigoSantaFe," +
+                    $"SuperficieCosechadaTrigoBuenosAires,SuperficieCosechadaTrigoCordoba,ProduccionTrigoSantaFe,ProduccionTrigoBuenosAires,ProduccionTrigoCordoba," +
+                    $"RendimientoTrigoSantaFe,RendimientoTrigoBuenosAires," +
+                    $"RendimientoTrigoCordoba,PromedioIncendiosMensualesSantaFe,PromedioIncendiosMensualesBuenosAires,PromedioIncendioMensualesCordoba," +
+                    $"VariacionTrigoDiaAnterior,VariacionTrigoTresDia," +
+                    $"VariacionTrigoSieteDias,LluviaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaTreintaDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaTreintaDiasBuenosAires,LluviaDiariaAcumuladaTreintaDiasCordoba," +
+                    $"LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe,LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires,LluviaDiariaAcumuladaCuarentaCincoDiasCordoba," +
+                    $"LluviaDiariaAcumuladaSesentaDiasSantaFe,LluviaDiariaAcumuladaSesentaDiasBuenosAires,LluviaDiariaAcumuladaSesentaDiasCordoba," +
+                    $"PrecioPromedioTreintaDiasTrigo,PrecioPromedioSesentaDiasTrigo,PrecioPromedioNoventaDiasTrigo,PrecioRealDiaSiguiente");
+
+                for (int i = 0; i < registros.Count - 5; i++) //Vamos hasta el anteultimo registro para obtener el precio real del dia siguiente
+                {
+                    var item = registros[i];
+                    var itemPredict = registros[i + 5]; //atributo de salida. Precio del cultivo a 24 horas
+                                                        //Escribimos la linea del archivo
+                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
+                        $"{item.PrecioPromedioDiarioTrigoUSD}," +
+                            $"{item.SuperficieSembradaTrigoSantaFe},{item.SuperficieSembradaTrigoBuenosAires},{item.SuperficieSembradaTrigoCordoba},{item.SuperficieCosechadaTrigoSantaFe}," +
+                            $"{item.SuperficieCosechadaTrigoBuenosAires}," +
+                            $"{item.SuperficieCosechadaTrigoCordoba},{item.ProduccionTrigoSantaFe},{item.ProduccionTrigoBuenosAires},{item.ProduccionTrigoCordoba},{item.RendimientoTrigoSantaFe}," +
+                            $"{item.RendimientoTrigoBuenosAires},{item.RendimientoTrigoCordoba},{item.PromedioIncendiosMensualesSantaFe},{item.PromedioIncendiosMensualesBuenosAires}," +
+                            $"{item.PromedioIncendiosMensualesCordoba},{item.VariacionTrigoDiaAnterior},{item.VariacionTrigoTresDias},{item.VariacionTrigoSieteDias},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaTreintaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaTreintaDiasBuenosAires},{item.LluviaDiariaAcumuladaTreintaDiasCordoba},{item.LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires},{item.LluviaDiariaAcumuladaCuarentaCincoDiasCordoba},{item.LluviaDiariaAcumuladaSesentaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSesentaDiasBuenosAires},{item.LluviaDiariaAcumuladaSesentaDiasCordoba},{item.PrecioPromedioTreintaDiasTrigo}," +
+                            $"{item.PrecioPromedioSesentaDiasTrigo},{item.PrecioPromedioNoventaDiasTrigo},{itemPredict.PrecioPromedioDiarioTrigoUSD}");
+                }
+            }
+        }
+
+        private static void GenerarArchivoTrigo72(List<Datos> registros)
+        {
+            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "Trigo-72hs.csv"))
+            {
+                registros = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
+                                                                                                   //escritura del header
+                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioTrigoUSD,SuperficieSembradaTrigoSantaFe," +
+                    $"SuperficieSembradaTrigoBuenosAires," +
+                    $"SuperficieSembradaTrigoCordoba,SuperficieCosechadaTrigoSantaFe," +
+                    $"SuperficieCosechadaTrigoBuenosAires,SuperficieCosechadaTrigoCordoba,ProduccionTrigoSantaFe,ProduccionTrigoBuenosAires,ProduccionTrigoCordoba," +
+                    $"RendimientoTrigoSantaFe,RendimientoTrigoBuenosAires," +
+                    $"RendimientoTrigoCordoba,PromedioIncendiosMensualesSantaFe,PromedioIncendiosMensualesBuenosAires,PromedioIncendioMensualesCordoba," +
+                    $"VariacionTrigoDiaAnterior,VariacionTrigoTresDia," +
+                    $"VariacionTrigoSieteDias,LluviaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaTreintaDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaTreintaDiasBuenosAires,LluviaDiariaAcumuladaTreintaDiasCordoba," +
+                    $"LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe,LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires,LluviaDiariaAcumuladaCuarentaCincoDiasCordoba," +
+                    $"LluviaDiariaAcumuladaSesentaDiasSantaFe,LluviaDiariaAcumuladaSesentaDiasBuenosAires,LluviaDiariaAcumuladaSesentaDiasCordoba," +
+                    $"PrecioPromedioTreintaDiasTrigo,PrecioPromedioSesentaDiasTrigo,PrecioPromedioNoventaDiasTrigo,PrecioRealDiaSiguiente");
+
+                for (int i = 0; i < registros.Count - 3; i++) //Vamos hasta el anteultimo registro para obtener el precio real del dia siguiente
+                {
+                    var item = registros[i];
+                    var itemPredict = registros[i + 3]; //atributo de salida. Precio del cultivo a 24 horas
+                                                        //Escribimos la linea del archivo
+                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioTrigoUSD}," +
+                            $"{item.SuperficieSembradaTrigoSantaFe},{item.SuperficieSembradaTrigoBuenosAires},{item.SuperficieSembradaTrigoCordoba},{item.SuperficieCosechadaTrigoSantaFe}," +
+                            $"{item.SuperficieCosechadaTrigoBuenosAires}," +
+                            $"{item.SuperficieCosechadaTrigoCordoba},{item.ProduccionTrigoSantaFe},{item.ProduccionTrigoBuenosAires},{item.ProduccionTrigoCordoba},{item.RendimientoTrigoSantaFe}," +
+                            $"{item.RendimientoTrigoBuenosAires},{item.RendimientoTrigoCordoba},{item.PromedioIncendiosMensualesSantaFe},{item.PromedioIncendiosMensualesBuenosAires}," +
+                            $"{item.PromedioIncendiosMensualesCordoba},{item.VariacionTrigoDiaAnterior},{item.VariacionTrigoTresDias},{item.VariacionTrigoSieteDias},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaTreintaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaTreintaDiasBuenosAires},{item.LluviaDiariaAcumuladaTreintaDiasCordoba},{item.LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires},{item.LluviaDiariaAcumuladaCuarentaCincoDiasCordoba},{item.LluviaDiariaAcumuladaSesentaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSesentaDiasBuenosAires},{item.LluviaDiariaAcumuladaSesentaDiasCordoba},{item.PrecioPromedioTreintaDiasTrigo}," +
+                            $"{item.PrecioPromedioSesentaDiasTrigo},{item.PrecioPromedioNoventaDiasTrigo},{itemPredict.PrecioPromedioDiarioTrigoUSD}");
+                }
+            }
+        }
+
+        private static void GenerarArchivoTrigo24(List<Datos> registros)
+        {
+            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "Trigo-24hs.csv"))
+            {
+                registros = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
+                                                                                                   //escritura del header
+                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioTrigoUSD,SuperficieSembradaTrigoSantaFe," +
+                    $"SuperficieSembradaTrigoBuenosAires," +
+                    $"SuperficieSembradaTrigoCordoba,SuperficieCosechadaTrigoSantaFe," +
+                    $"SuperficieCosechadaTrigoBuenosAires,SuperficieCosechadaTrigoCordoba,ProduccionTrigoSantaFe,ProduccionTrigoBuenosAires,ProduccionTrigoCordoba," +
+                    $"RendimientoTrigoSantaFe,RendimientoTrigoBuenosAires," +
+                    $"RendimientoTrigoCordoba,PromedioIncendiosMensualesSantaFe,PromedioIncendiosMensualesBuenosAires,PromedioIncendioMensualesCordoba," +
+                    $"VariacionTrigoDiaAnterior,VariacionTrigoTresDia," +
+                    $"VariacionTrigoSieteDias,LluviaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaSieteDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaSieteDiasBuenosAires,LluviaDiariaAcumuladaSieteDiasCordoba,LluviaDiariaAcumuladaTreintaDiasSantaFe," +
+                    $"LluviaDiariaAcumuladaTreintaDiasBuenosAires,LluviaDiariaAcumuladaTreintaDiasCordoba," +
+                    $"LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe,LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires,LluviaDiariaAcumuladaCuarentaCincoDiasCordoba," +
+                    $"LluviaDiariaAcumuladaSesentaDiasSantaFe,LluviaDiariaAcumuladaSesentaDiasBuenosAires,LluviaDiariaAcumuladaSesentaDiasCordoba," +
+                    $"PrecioPromedioTreintaDiasTrigo,PrecioPromedioSesentaDiasTrigo,PrecioPromedioNoventaDiasTrigo,PrecioRealDiaSiguiente");
+
+                for (int i = 0; i < registros.Count - 1; i++) //Vamos hasta el anteultimo registro para obtener el precio real del dia siguiente
+                {
+                    var item = registros[i];
+                    var itemPredict = registros[i + 1]; //atributo de salida. Precio del cultivo a 24 horas
+                                                        //Escribimos la linea del archivo
+                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
+                        $"{item.PrecioPromedioDiarioTrigoUSD}," +
+                            $"{item.SuperficieSembradaTrigoSantaFe},{item.SuperficieSembradaTrigoBuenosAires},{item.SuperficieSembradaTrigoCordoba},{item.SuperficieCosechadaTrigoSantaFe}," +
+                            $"{item.SuperficieCosechadaTrigoBuenosAires}," +
+                            $"{item.SuperficieCosechadaTrigoCordoba},{item.ProduccionTrigoSantaFe},{item.ProduccionTrigoBuenosAires},{item.ProduccionTrigoCordoba},{item.RendimientoTrigoSantaFe}," +
+                            $"{item.RendimientoTrigoBuenosAires},{item.RendimientoTrigoCordoba},{item.PromedioIncendiosMensualesSantaFe},{item.PromedioIncendiosMensualesBuenosAires}," +
+                            $"{item.PromedioIncendiosMensualesCordoba},{item.VariacionTrigoDiaAnterior},{item.VariacionTrigoTresDias},{item.VariacionTrigoSieteDias}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaSieteDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSieteDiasBuenosAires},{item.LluviaDiariaAcumuladaSieteDiasCordoba},{item.LluviaDiariaAcumuladaTreintaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaTreintaDiasBuenosAires},{item.LluviaDiariaAcumuladaTreintaDiasCordoba},{item.LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires},{item.LluviaDiariaAcumuladaCuarentaCincoDiasCordoba},{item.LluviaDiariaAcumuladaSesentaDiasSantaFe}," +
+                            $"{item.LluviaDiariaAcumuladaSesentaDiasBuenosAires},{item.LluviaDiariaAcumuladaSesentaDiasCordoba},{item.PrecioPromedioTreintaDiasTrigo}," +
+                            $"{item.PrecioPromedioSesentaDiasTrigo},{item.PrecioPromedioNoventaDiasTrigo},{itemPredict.PrecioPromedioDiarioTrigoUSD}");
+                }
             }
         }
     }

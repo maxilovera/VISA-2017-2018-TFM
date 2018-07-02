@@ -91,5 +91,32 @@ namespace TFM
         public Nullable<decimal> VariacionTrigoSieteDias { get; set; }
         public Nullable<decimal> VariacionSojaSieteDias { get; set; }
         public Nullable<decimal> VariacionMaizSieteDias { get; set; }
+        public Nullable<decimal> LluviaDiariaCordoba { get; set; }
+        public Nullable<decimal> LLuviaMensualCordoba { get; set; }
+        public Nullable<decimal> LluviaAnualCordoba { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaSieteDiasSantaFe { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaSieteDiasBuenosAires { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaSieteDiasCordoba { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaQuinceDiasSantaFe { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaQuinceDiasBuenosAires { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaQuinceDiasCordoba { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaTreintaDiasSantaFe { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaTreintaDiasBuenosAires { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaTreintaDiasCordoba { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaCuarentaCincoDiasCordoba { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaSesentaDiasSantaFe { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaSesentaDiasBuenosAires { get; set; }
+        public Nullable<decimal> LluviaDiariaAcumuladaSesentaDiasCordoba { get; set; }
+        public Nullable<decimal> PrecioPromedioTreintaDiasMaiz { get; set; }
+        public Nullable<decimal> PrecioPromedioTreintaDiasSoja { get; set; }
+        public Nullable<decimal> PrecioPromedioTreintaDiasTrigo { get; set; }
+        public Nullable<decimal> PrecioPromedioSesentaDiasMaiz { get; set; }
+        public Nullable<decimal> PrecioPromedioSesentaDiasSoja { get; set; }
+        public Nullable<decimal> PrecioPromedioSesentaDiasTrigo { get; set; }
+        public Nullable<decimal> PrecioPromedioNoventaDiasMaiz { get; set; }
+        public Nullable<decimal> PrecioPromedioNoventaDiasSoja { get; set; }
+        public Nullable<decimal> PrecioPromedioNoventaDiasTrigo { get; set; }
     }
 }

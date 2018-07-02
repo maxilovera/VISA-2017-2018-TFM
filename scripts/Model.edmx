@@ -97,82 +97,43 @@ advertencia 6002: La tabla o vista 'Unir.dbo.Customers' no tiene definida ningun
           <Property Name="PromedioIncendiosMensualesBuenosAires" Type="int" />
           <Property Name="PromedioIncendiosMensualesCordoba" Type="int" />
           <Property Name="PromedioIncendiosMensualesSantaFe" Type="int" />
-          <Property Name="VariacionTrigoDiaAnterior" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionSojaDiaAnterior" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionMaizDiaAnterior" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionTrigoTresDias" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionSojaTresDias" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionMaizTresDia" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionTrigoSieteDias" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionSojaSieteDias" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionMaizSieteDias" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionTrigoDiaAnterior" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionSojaDiaAnterior" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionMaizDiaAnterior" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionTrigoTresDias" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionSojaTresDias" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionMaizTresDia" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionTrigoSieteDias" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionSojaSieteDias" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionMaizSieteDias" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LLuviaMensualCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaAnualCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSieteDiasSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSieteDiasBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSieteDiasCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaQuinceDiasSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaQuinceDiasBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaQuinceDiasCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaTreintaDiasSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaTreintaDiasBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaTreintaDiasCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaCuarentaCincoDiasCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSesentaDiasSantaFe" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSesentaDiasBuenosAires" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSesentaDiasCordoba" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioTreintaDiasMaiz" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioTreintaDiasSoja" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioTreintaDiasTrigo" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioSesentaDiasMaiz" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioSesentaDiasSoja" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioSesentaDiasTrigo" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioNoventaDiasMaiz" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioNoventaDiasSoja" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioNoventaDiasTrigo" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'Unir.dbo.DatosDiariosInta' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="DatosDiariosInta">
-          <Property Name="Fecha" Type="nvarchar" MaxLength="255" />
-          <Property Name="Temperatura_Abrigo_150cm" Type="nvarchar" MaxLength="255" />
-          <Property Name="Temperatura_Abrigo_150cm_Maxima" Type="nvarchar" MaxLength="255" />
-          <Property Name="Temperatura_Abrigo_150cm_Minima" Type="nvarchar" MaxLength="255" />
-          <Property Name="Temperatura_Intemperie_5cm_Minima" Type="nvarchar" MaxLength="255" />
-          <Property Name="Temperatura_Intemperie_50cm_Minima" Type="nvarchar" MaxLength="255" />
-          <Property Name="Temperatura_Suelo_5cm_Media" Type="nvarchar" MaxLength="255" />
-          <Property Name="Temperatura_Suelo_10cm_Media" Type="nvarchar" MaxLength="255" />
-          <Property Name="Temperatura_Inte_5cm" Type="nvarchar" MaxLength="255" />
-          <Property Name="Temperatura_Intemperie_150cm_Minima" Type="nvarchar" MaxLength="255" />
-          <Property Name="Humedad_Suelo" Type="nvarchar" MaxLength="255" />
-          <Property Name="Precipitacion_Pluviometrica" Type="nvarchar" MaxLength="255" />
-          <Property Name="Granizo" Type="nvarchar" MaxLength="255" />
-          <Property Name="Nieve" Type="nvarchar" MaxLength="255" />
-          <Property Name="Heliofania_Efectiva" Type="nvarchar" MaxLength="255" />
-          <Property Name="Heliofania_Relativa" Type="nvarchar" MaxLength="255" />
-          <Property Name="Tesion_Vapor_Media" Type="nvarchar" MaxLength="255" />
-          <Property Name="Humedad_Media" Type="nvarchar" MaxLength="255" />
-          <Property Name="Humedad_Media_8_14_20" Type="nvarchar" MaxLength="255" />
-          <Property Name="Rocio_Medio" Type="nvarchar" MaxLength="255" />
-          <Property Name="Duracion_Follaje_Mojado" Type="nvarchar" MaxLength="255" />
-          <Property Name="Velocidad_Viento_200cm_Media" Type="nvarchar" MaxLength="255" />
-          <Property Name="Direccion_Viento_200cm" Type="nvarchar" MaxLength="255" />
-          <Property Name="Velocidad_Viento_1000cm_Media" Type="nvarchar" MaxLength="255" />
-          <Property Name="Direccion_Viento_1000cm" Type="nvarchar" MaxLength="255" />
-          <Property Name="Velocidad_Viento_Maxima" Type="nvarchar" MaxLength="255" />
-          <Property Name="Presion_Media" Type="nvarchar" MaxLength="255" />
-          <Property Name="Radiacion_Global" Type="nvarchar" MaxLength="255" />
-          <Property Name="Radiacion_Neta" Type="nvarchar" MaxLength="255" />
-          <Property Name="Evaporacion_Tanque" Type="nvarchar" MaxLength="255" />
-          <Property Name="Evapotranspiracion_Potencial" Type="nvarchar" MaxLength="255" />
-          <Property Name="Profundidad_Napa" Type="nvarchar" MaxLength="255" />
-          <Property Name="Horas_Frio" Type="nvarchar" MaxLength="255" />
-          <Property Name="Unidad_Frio" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'Unir.dbo.Estimaciones_Agricolas' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Estimaciones_Agricolas">
-          <Property Name="provincia_id" Type="float" />
-          <Property Name="nom_provincia" Type="nvarchar" MaxLength="255" />
-          <Property Name="departamento_id" Type="float" />
-          <Property Name="nom_depto" Type="nvarchar" MaxLength="255" />
-          <Property Name="cultivo_id" Type="float" />
-          <Property Name="nom_cultivo" Type="nvarchar" MaxLength="255" />
-          <Property Name="campaña_id" Type="float" />
-          <Property Name="campaña" Type="nvarchar" MaxLength="255" />
-          <Property Name="año" Type="int" />
-          <Property Name="sup_sembrada" Type="float" />
-          <Property Name="sup_cosechada" Type="float" />
-          <Property Name="produccion" Type="float" />
-          <Property Name="rendimiento" Type="float" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'Unir.dbo.incendios-cantidad-causas-provincia' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="incendios-cantidad-causas-provincia">
-          <Property Name="incendio_anio" Type="float" />
-          <Property Name="incendio_provincia" Type="nvarchar" MaxLength="255" />
-          <Property Name="incendio_total_numero" Type="float" />
-          <Property Name="incendio_negligencia_numero" Type="float" />
-          <Property Name="incendio_intencional_numero" Type="float" />
-          <Property Name="incendio_natural_numero" Type="float" />
-          <Property Name="incendio_desconocida_numero" Type="float" />
-        </EntityType>-->
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'Unir.dbo.LluviasAnuales' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="LluviasAnuales">
@@ -525,15 +486,42 @@ advertencia 6002: La tabla o vista 'Unir.dbo.LluviasDiariasSantaFe' no tiene def
           <Property Name="PromedioIncendiosMensualesBuenosAires" Type="Int32" />
           <Property Name="PromedioIncendiosMensualesCordoba" Type="Int32" />
           <Property Name="PromedioIncendiosMensualesSantaFe" Type="Int32" />
-          <Property Name="VariacionTrigoDiaAnterior" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionSojaDiaAnterior" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionMaizDiaAnterior" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionTrigoTresDias" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionSojaTresDias" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionMaizTresDia" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionTrigoSieteDias" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionSojaSieteDias" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="VariacionMaizSieteDias" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VariacionTrigoDiaAnterior" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionSojaDiaAnterior" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionMaizDiaAnterior" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionTrigoTresDias" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionSojaTresDias" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionMaizTresDia" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionTrigoSieteDias" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionSojaSieteDias" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="VariacionMaizSieteDias" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LLuviaMensualCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaAnualCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSieteDiasSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSieteDiasBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSieteDiasCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaQuinceDiasSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaQuinceDiasBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaQuinceDiasCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaTreintaDiasSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaTreintaDiasBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaTreintaDiasCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaCuarentaCincoDiasCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSesentaDiasSantaFe" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSesentaDiasBuenosAires" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LluviaDiariaAcumuladaSesentaDiasCordoba" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioTreintaDiasMaiz" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioTreintaDiasSoja" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioTreintaDiasTrigo" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioSesentaDiasMaiz" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioSesentaDiasSoja" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioSesentaDiasTrigo" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioNoventaDiasMaiz" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioNoventaDiasSoja" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioPromedioNoventaDiasTrigo" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="LluviasRegistradas">
           <Key>
@@ -698,6 +686,33 @@ advertencia 6002: La tabla o vista 'Unir.dbo.LluviasDiariasSantaFe' no tiene def
           <EntitySetMapping Name="Datos">
             <EntityTypeMapping TypeName="UnirModel.Datos">
               <MappingFragment StoreEntitySet="Datos">
+                <ScalarProperty Name="PrecioPromedioNoventaDiasTrigo" ColumnName="PrecioPromedioNoventaDiasTrigo" />
+                <ScalarProperty Name="PrecioPromedioNoventaDiasSoja" ColumnName="PrecioPromedioNoventaDiasSoja" />
+                <ScalarProperty Name="PrecioPromedioNoventaDiasMaiz" ColumnName="PrecioPromedioNoventaDiasMaiz" />
+                <ScalarProperty Name="PrecioPromedioSesentaDiasTrigo" ColumnName="PrecioPromedioSesentaDiasTrigo" />
+                <ScalarProperty Name="PrecioPromedioSesentaDiasSoja" ColumnName="PrecioPromedioSesentaDiasSoja" />
+                <ScalarProperty Name="PrecioPromedioSesentaDiasMaiz" ColumnName="PrecioPromedioSesentaDiasMaiz" />
+                <ScalarProperty Name="PrecioPromedioTreintaDiasTrigo" ColumnName="PrecioPromedioTreintaDiasTrigo" />
+                <ScalarProperty Name="PrecioPromedioTreintaDiasSoja" ColumnName="PrecioPromedioTreintaDiasSoja" />
+                <ScalarProperty Name="PrecioPromedioTreintaDiasMaiz" ColumnName="PrecioPromedioTreintaDiasMaiz" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaSesentaDiasCordoba" ColumnName="LluviaDiariaAcumuladaSesentaDiasCordoba" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaSesentaDiasBuenosAires" ColumnName="LluviaDiariaAcumuladaSesentaDiasBuenosAires" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaSesentaDiasSantaFe" ColumnName="LluviaDiariaAcumuladaSesentaDiasSantaFe" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaCuarentaCincoDiasCordoba" ColumnName="LluviaDiariaAcumuladaCuarentaCincoDiasCordoba" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires" ColumnName="LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe" ColumnName="LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaTreintaDiasCordoba" ColumnName="LluviaDiariaAcumuladaTreintaDiasCordoba" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaTreintaDiasBuenosAires" ColumnName="LluviaDiariaAcumuladaTreintaDiasBuenosAires" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaTreintaDiasSantaFe" ColumnName="LluviaDiariaAcumuladaTreintaDiasSantaFe" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaQuinceDiasCordoba" ColumnName="LluviaDiariaAcumuladaQuinceDiasCordoba" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaQuinceDiasBuenosAires" ColumnName="LluviaDiariaAcumuladaQuinceDiasBuenosAires" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaQuinceDiasSantaFe" ColumnName="LluviaDiariaAcumuladaQuinceDiasSantaFe" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaSieteDiasCordoba" ColumnName="LluviaDiariaAcumuladaSieteDiasCordoba" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaSieteDiasBuenosAires" ColumnName="LluviaDiariaAcumuladaSieteDiasBuenosAires" />
+                <ScalarProperty Name="LluviaDiariaAcumuladaSieteDiasSantaFe" ColumnName="LluviaDiariaAcumuladaSieteDiasSantaFe" />
+                <ScalarProperty Name="LluviaAnualCordoba" ColumnName="LluviaAnualCordoba" />
+                <ScalarProperty Name="LLuviaMensualCordoba" ColumnName="LLuviaMensualCordoba" />
+                <ScalarProperty Name="LluviaDiariaCordoba" ColumnName="LluviaDiariaCordoba" />
                 <ScalarProperty Name="VariacionMaizSieteDias" ColumnName="VariacionMaizSieteDias" />
                 <ScalarProperty Name="VariacionSojaSieteDias" ColumnName="VariacionSojaSieteDias" />
                 <ScalarProperty Name="VariacionTrigoSieteDias" ColumnName="VariacionTrigoSieteDias" />
