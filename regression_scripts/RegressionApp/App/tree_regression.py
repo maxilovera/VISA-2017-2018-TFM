@@ -11,30 +11,39 @@ def procesarArchivo(archivo):
     dataset = pd.read_csv(archivo, delimiter=',') #importamos el dataset pasado como parámetro
 
     X = dataset.iloc[:, :-1].values #Obtenemos la matriz de variables independientes
-    y = dataset.iloc[:, 42].values #Obtenemos el vector de la variable dependiente
+    y = dataset.iloc[:, 41].values #Obtenemos el vector de la variable dependiente
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state = 0)
 
     # Ajuste del modelo
     regr_1 = DecisionTreeRegressor(max_depth=2)
     regr_2 = DecisionTreeRegressor(max_depth=5)
+    regr_3 = DecisionTreeRegressor(max_depth=10)
     regr_1.fit(X, y)
     regr_2.fit(X, y)
+    regr_3.fit(X, y)
 
     # Predict
     y_1 = regr_1.predict(X_test)
     y_2 = regr_2.predict(X_test)
+    y_3 = regr_2.predict(X_test)
+
+    #metrics
+    
+    print('FI 1: ', regr_1.feature_importances_)    
+    print('FI 2: ', regr_2.feature_importances_)    
+    print('FI 3: ', regr_3.feature_importances_)    
 
     # Plot the results
-    plt.figure()
-    plt.scatter(X, y, s=20, edgecolor="black", c="darkorange", label="data")
-    plt.plot(X_test, y_1, color="cornflowerblue", label="max_depth=2", linewidth=2)
-    plt.plot(X_test, y_2, color="yellowgreen", label="max_depth=5", linewidth=2)
-    plt.xlabel("data")
-    plt.ylabel("target")
-    plt.title("Regresión con árboles")
-    plt.legend()
-    plt.show()
+    #plt.figure()
+    #plt.scatter(X, y, s=20, edgecolor="black", c="darkorange", label="data")
+    #plt.plot(X_test, y_1, color="cornflowerblue", label="max_depth=2", linewidth=2)
+    #plt.plot(X_test, y_2, color="yellowgreen", label="max_depth=5", linewidth=2)
+    #plt.xlabel("data")
+    #plt.ylabel("target")
+    #plt.title("Regresión con árboles")
+    #plt.legend()
+    #plt.show()
 
 if __name__ == '__main__':
     procesarArchivo('maiz-24hs.csv')

@@ -22,6 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="analisis_correlacion.py" />
     <Compile Include="perceptron_regression.py" />
     <Compile Include="tree_regression.py" />
     <Compile Include="linear_regression.py" />

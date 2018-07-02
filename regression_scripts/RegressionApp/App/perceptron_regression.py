@@ -11,19 +11,21 @@ def procesarArchivo(archivo):
     dataset = pd.read_csv(archivo, delimiter=',') #importamos el dataset pasado como parámetro
 
     X = dataset.iloc[:, :-1].values #Obtenemos la matriz de variables independientes
-    y = dataset.iloc[:, 42].values #Obtenemos el vector de la variable dependiente
+    y = dataset.iloc[:, 41].values #Obtenemos el vector de la variable dependiente
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state = 0)
+    X_scaled_train = preprocessing.scale(X_train)
+    X_scaled_test = preprocessing.scale(X_test)
 
     # Ajuste del modelo
     regr = MLPRegressor()    
-    regr.fit(X_train, y_train)
+    regr.fit(X_scaled_train, y_train)
 
     # Predict
-    y_pred = regr.predict(X_test)
+    y_pred = regr.predict(X_scaled_test)
 
     # Plot the results
-    score = regr.score(X_test, y_test)
+    score = regr.score(X_scaled_test, y_test)
     print(score)
 
 if __name__ == '__main__':

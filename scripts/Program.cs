@@ -126,9 +126,9 @@ namespace TFM
                 //    Console.WriteLine(item.Fecha.ToShortDateString());
                 //}
 
-                VariacionesTrigo(entities);
-                VariacionesSoja(entities);
-                VariacionesMaiz(entities);
+                //VariacionesTrigo(entities);
+                //VariacionesSoja(entities);
+                //VariacionesMaiz(entities);
 
                 var registros = entities.Datos.ToList();
 
@@ -377,7 +377,7 @@ namespace TFM
                     var item = registros[i];
                     var itemPredict = registros[i + 5]; //atributo de salida. Precio del cultivo a 24 horas
                                                         //Escribimos la linea del archivo
-                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
+                    writer.WriteLine($"{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
                         $"{item.PrecioPromedioDiarioMaizUSD}," +
                             $"{item.SuperficieSembradaMaizSantaFe},{item.SuperficieSembradaMaizBuenosAires},{item.SuperficieSembradaMaizCordoba},{item.SuperficieCosechadaMaizSantaFe}," +
                             $"{item.SuperficieCosechadaMaizBuenosAires}," +
@@ -420,7 +420,7 @@ namespace TFM
                     var item = registros[i];
                     var itemPredict = registros[i + 3]; //atributo de salida. Precio del cultivo a 24 horas
                                                         //Escribimos la linea del archivo
-                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioMaizUSD}," +
+                    writer.WriteLine($"{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioMaizUSD}," +
                             $"{item.SuperficieSembradaMaizSantaFe},{item.SuperficieSembradaMaizBuenosAires},{item.SuperficieSembradaMaizCordoba},{item.SuperficieCosechadaMaizSantaFe}," +
                             $"{item.SuperficieCosechadaMaizBuenosAires}," +
                             $"{item.SuperficieCosechadaMaizCordoba},{item.ProduccionMaizSantaFe},{item.ProduccionMaizBuenosAires},{item.ProduccionMaizCordoba},{item.RendimientoMaizSantaFe}," +
@@ -442,7 +442,7 @@ namespace TFM
             {
                 registros = registros.Where(x => x.PrecioPromedioDiarioMaizUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
                                                                                                   //escritura del header
-                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioMaizUSD,SuperficieSembradaMaizSantaFe," +
+                writer.WriteLine($"LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioMaizUSD,SuperficieSembradaMaizSantaFe," +
                     $"SuperficieSembradaMaizBuenosAires," +
                     $"SuperficieSembradaMaizCordoba,SuperficieCosechadaMaizSantaFe," +
                     $"SuperficieCosechadaMaizBuenosAires,SuperficieCosechadaMaizCordoba,ProduccionMaizSantaFe,ProduccionMaizBuenosAires,ProduccionMaizCordoba," +
@@ -462,7 +462,7 @@ namespace TFM
                     var item = registros[i];
                     var itemPredict = registros[i + 1]; //atributo de salida. Precio del cultivo a 24 horas
                                                         //Escribimos la linea del archivo
-                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioMaizUSD}," +
+                    writer.WriteLine($"{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioMaizUSD}," +
                             $"{item.SuperficieSembradaMaizSantaFe},{item.SuperficieSembradaMaizBuenosAires},{item.SuperficieSembradaMaizCordoba},{item.SuperficieCosechadaMaizSantaFe}," +
                             $"{item.SuperficieCosechadaMaizBuenosAires}," +
                             $"{item.SuperficieCosechadaMaizCordoba},{item.ProduccionMaizSantaFe},{item.ProduccionMaizBuenosAires},{item.ProduccionMaizCordoba},{item.RendimientoMaizSantaFe}," +
@@ -485,7 +485,7 @@ namespace TFM
             {
                 registros = registros.Where(x => x.PrecioPromedioDiarioSojaUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
                                                                                                   //escritura del header
-                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioSojaUSD,SuperficieSembradaSojaSantaFe," +
+                writer.WriteLine($"LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioSojaUSD,SuperficieSembradaSojaSantaFe," +
                     $"SuperficieSembradaSojaBuenosAires," +
                     $"SuperficieSembradaSojaCordoba,SuperficieCosechadaSojaSantaFe," +
                     $"SuperficieCosechadaSojaBuenosAires,SuperficieCosechadaSojaCordoba,ProduccionSojaSantaFe,ProduccionSojaBuenosAires,ProduccionSojaCordoba," +
@@ -505,7 +505,7 @@ namespace TFM
                     var item = registros[i];
                     var itemPredict = registros[i + 5]; //atributo de salida. Precio del cultivo a 24 horas
                                                         //Escribimos la linea del archivo
-                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
+                    writer.WriteLine($"{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
                         $"{item.PrecioPromedioDiarioSojaUSD}," +
                             $"{item.SuperficieSembradaSojaSantaFe},{item.SuperficieSembradaSojaBuenosAires},{item.SuperficieSembradaSojaCordoba},{item.SuperficieCosechadaSojaSantaFe}," +
                             $"{item.SuperficieCosechadaSojaBuenosAires}," +
@@ -528,7 +528,7 @@ namespace TFM
             {
                 registros = registros.Where(x => x.PrecioPromedioDiarioSojaUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
                                                                                                   //escritura del header
-                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioSojaUSD,SuperficieSembradaSojaSantaFe," +
+                writer.WriteLine($"LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioSojaUSD,SuperficieSembradaSojaSantaFe," +
                     $"SuperficieSembradaSojaBuenosAires," +
                     $"SuperficieSembradaSojaCordoba,SuperficieCosechadaSojaSantaFe," +
                     $"SuperficieCosechadaSojaBuenosAires,SuperficieCosechadaSojaCordoba,ProduccionSojaSantaFe,ProduccionSojaBuenosAires,ProduccionSojaCordoba," +
@@ -548,7 +548,7 @@ namespace TFM
                     var item = registros[i];
                     var itemPredict = registros[i + 3]; //atributo de salida. Precio del cultivo a 24 horas
                                                         //Escribimos la linea del archivo
-                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioSojaUSD}," +
+                    writer.WriteLine($"{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioSojaUSD}," +
                             $"{item.SuperficieSembradaSojaSantaFe},{item.SuperficieSembradaSojaBuenosAires},{item.SuperficieSembradaSojaCordoba},{item.SuperficieCosechadaSojaSantaFe}," +
                             $"{item.SuperficieCosechadaSojaBuenosAires}," +
                             $"{item.SuperficieCosechadaSojaCordoba},{item.ProduccionSojaSantaFe},{item.ProduccionSojaBuenosAires},{item.ProduccionSojaCordoba},{item.RendimientoSojaSantaFe}," +
@@ -570,7 +570,7 @@ namespace TFM
             {
                 registros = registros.Where(x => x.PrecioPromedioDiarioSojaUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
                                                                                                   //escritura del header
-                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioSojaUSD,SuperficieSembradaSojaSantaFe," +
+                writer.WriteLine($"LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioSojaUSD,SuperficieSembradaSojaSantaFe," +
                     $"SuperficieSembradaSojaBuenosAires," +
                     $"SuperficieSembradaSojaCordoba,SuperficieCosechadaSojaSantaFe," +
                     $"SuperficieCosechadaSojaBuenosAires,SuperficieCosechadaSojaCordoba,ProduccionSojaSantaFe,ProduccionSojaBuenosAires,ProduccionSojaCordoba," +
@@ -590,7 +590,7 @@ namespace TFM
                     var item = registros[i];
                     var itemPredict = registros[i + 1]; //atributo de salida. Precio del cultivo a 24 horas
                                                         //Escribimos la linea del archivo
-                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioSojaUSD}," +
+                    writer.WriteLine($"{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioSojaUSD}," +
                             $"{item.SuperficieSembradaSojaSantaFe},{item.SuperficieSembradaSojaBuenosAires},{item.SuperficieSembradaSojaCordoba},{item.SuperficieCosechadaSojaSantaFe}," +
                             $"{item.SuperficieCosechadaSojaBuenosAires}," +
                             $"{item.SuperficieCosechadaSojaCordoba},{item.ProduccionSojaSantaFe},{item.ProduccionSojaBuenosAires},{item.ProduccionSojaCordoba},{item.RendimientoSojaSantaFe}," +
@@ -613,7 +613,7 @@ namespace TFM
             {
                 registros = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
                                                                                                    //escritura del header
-                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioTrigoUSD,SuperficieSembradaTrigoSantaFe," +
+                writer.WriteLine($"LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioTrigoUSD,SuperficieSembradaTrigoSantaFe," +
                     $"SuperficieSembradaTrigoBuenosAires," +
                     $"SuperficieSembradaTrigoCordoba,SuperficieCosechadaTrigoSantaFe," +
                     $"SuperficieCosechadaTrigoBuenosAires,SuperficieCosechadaTrigoCordoba,ProduccionTrigoSantaFe,ProduccionTrigoBuenosAires,ProduccionTrigoCordoba," +
@@ -633,7 +633,7 @@ namespace TFM
                     var item = registros[i];
                     var itemPredict = registros[i + 5]; //atributo de salida. Precio del cultivo a 24 horas
                                                         //Escribimos la linea del archivo
-                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
+                    writer.WriteLine($"{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
                         $"{item.PrecioPromedioDiarioTrigoUSD}," +
                             $"{item.SuperficieSembradaTrigoSantaFe},{item.SuperficieSembradaTrigoBuenosAires},{item.SuperficieSembradaTrigoCordoba},{item.SuperficieCosechadaTrigoSantaFe}," +
                             $"{item.SuperficieCosechadaTrigoBuenosAires}," +
@@ -656,7 +656,7 @@ namespace TFM
             {
                 registros = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
                                                                                                    //escritura del header
-                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioTrigoUSD,SuperficieSembradaTrigoSantaFe," +
+                writer.WriteLine($"LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioTrigoUSD,SuperficieSembradaTrigoSantaFe," +
                     $"SuperficieSembradaTrigoBuenosAires," +
                     $"SuperficieSembradaTrigoCordoba,SuperficieCosechadaTrigoSantaFe," +
                     $"SuperficieCosechadaTrigoBuenosAires,SuperficieCosechadaTrigoCordoba,ProduccionTrigoSantaFe,ProduccionTrigoBuenosAires,ProduccionTrigoCordoba," +
@@ -676,7 +676,7 @@ namespace TFM
                     var item = registros[i];
                     var itemPredict = registros[i + 3]; //atributo de salida. Precio del cultivo a 24 horas
                                                         //Escribimos la linea del archivo
-                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioTrigoUSD}," +
+                    writer.WriteLine($"{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar},{item.PrecioPromedioDiarioTrigoUSD}," +
                             $"{item.SuperficieSembradaTrigoSantaFe},{item.SuperficieSembradaTrigoBuenosAires},{item.SuperficieSembradaTrigoCordoba},{item.SuperficieCosechadaTrigoSantaFe}," +
                             $"{item.SuperficieCosechadaTrigoBuenosAires}," +
                             $"{item.SuperficieCosechadaTrigoCordoba},{item.ProduccionTrigoSantaFe},{item.ProduccionTrigoBuenosAires},{item.ProduccionTrigoCordoba},{item.RendimientoTrigoSantaFe}," +
@@ -698,7 +698,7 @@ namespace TFM
             {
                 registros = registros.Where(x => x.PrecioPromedioDiarioTrigoUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
                                                                                                    //escritura del header
-                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioTrigoUSD,SuperficieSembradaTrigoSantaFe," +
+                writer.WriteLine($"LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioTrigoUSD,SuperficieSembradaTrigoSantaFe," +
                     $"SuperficieSembradaTrigoBuenosAires," +
                     $"SuperficieSembradaTrigoCordoba,SuperficieCosechadaTrigoSantaFe," +
                     $"SuperficieCosechadaTrigoBuenosAires,SuperficieCosechadaTrigoCordoba,ProduccionTrigoSantaFe,ProduccionTrigoBuenosAires,ProduccionTrigoCordoba," +
@@ -718,7 +718,7 @@ namespace TFM
                     var item = registros[i];
                     var itemPredict = registros[i + 1]; //atributo de salida. Precio del cultivo a 24 horas
                                                         //Escribimos la linea del archivo
-                    writer.WriteLine($"{item.Fecha.ToString("yyyyMMdd")},{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
+                    writer.WriteLine($"{item.LluviaDiariaSantaFe},{item.LluviaDiariaBuenosAires},{item.LluviaDiariaCordoba},{item.CotizacionDolar}," +
                         $"{item.PrecioPromedioDiarioTrigoUSD}," +
                             $"{item.SuperficieSembradaTrigoSantaFe},{item.SuperficieSembradaTrigoBuenosAires},{item.SuperficieSembradaTrigoCordoba},{item.SuperficieCosechadaTrigoSantaFe}," +
                             $"{item.SuperficieCosechadaTrigoBuenosAires}," +
