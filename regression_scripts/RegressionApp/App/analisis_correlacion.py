@@ -1,38 +1,56 @@
-import os
 import numpy as np
 import pandas as pd
 import scipy as sp
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.linear_model import LinearRegression
 
-def procesarArchivo(archivo):
-    dataset = pd.read_csv(archivo, delimiter=',') #importamos el dataset pasado como parámetro
-    size = dataset.columns.size #definimos el tamaño de las columnas de datos
-    index = 0 
-    file = open("analisis_regresion-{0}".format(archivo),"w") #creacion del archivo de respuesta
-    while index < (size - 1): #No contamos la ultima columna de la variable dependiente
-        v1 = dataset.iloc[:, index].values #obtenemos el arreglo de datos de la columna inicial
-        nIndex = index + 1
-        while nIndex < (size - 1): #iteramos sobre las columnas siguientes
-            v2 = dataset.iloc[:, nIndex].values
-            print("Evaluacion {0}:{1} - {2}:{3}".format(index, dataset.columns[index], nIndex, dataset.columns[nIndex]))
-            coef = sp.stats.pearsonr(v1, v2) #obtenemos el resultado de la funcion que calcula el coef de correlación de Pearson
+def generarCorrelacion(dataset, archivo):
+    #calculo del coeficiente de correlacion de pearson para cada variable independiente.
+    corr = dataset.iloc[:, :-1].corr()
+    #generacion del mapa de calor
+    plot = sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values)
+    fig = plot.get_figure()
+    fig.savefig("correlacion-"+archivo.replace(".csv","") + ".png")
+    fig.clf()
 
-            print("Coeficiente de correlación {0} / p-valor: {1}".format(coef[0], coef[1])) #Imprimimos
-            nIndex = nIndex + 1
-            file.write("{0},{1},{2},{3},{4},{5}\n".format(index, dataset.columns[index], nIndex, dataset.columns[nIndex],coef[0], coef[1]))
+def procesarArchivoMaiz(archivo):
+    #Lectura del archivo
+    dataset = pd.read_csv(archivo, delimiter=',') 
+    #definicio de las columnas que nos interesaran para el analisis
+    cols_of_interest=["CotizacionDolar","SuperficieSembradaMaizSantaFe","SuperficieSembradaMaizBuenosAires","SuperficieSembradaMaizCordoba","SuperficieCosechadaMaizSantaFe","SuperficieCosechadaMaizBuenosAires","SuperficieCosechadaMaizCordoba","ProduccionMaizSantaFe","ProduccionMaizBuenosAires","ProduccionMaizCordoba","RendimientoMaizSantaFe","RendimientoMaizBuenosAires","RendimientoMaizCordoba","PromedioIncendiosMensualesSantaFe","PromedioIncendiosMensualesBuenosAires","PromedioIncendioMensualesCordoba","VariacionMaizDiaAnterior","VariacionMaizTresDia","VariacionMaizSieteDias", "LluviaAcumuladaSieteDiasSantaFe","LluviaDiariaAcumuladaSieteDiasBuenosAires","LluviaDiariaAcumuladaSieteDiasCordoba","LluviaDiariaAcumuladaSieteDiasSantaFe","LluviaDiariaAcumuladaSieteDiasBuenosAires","LluviaDiariaAcumuladaSieteDiasCordoba","LluviaDiariaAcumuladaTreintaDiasSantaFe","LluviaDiariaAcumuladaTreintaDiasBuenosAires","LluviaDiariaAcumuladaTreintaDiasCordoba","LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe","LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires","LluviaDiariaAcumuladaCuarentaCincoDiasCordoba","LluviaDiariaAcumuladaSesentaDiasSantaFe","LluviaDiariaAcumuladaSesentaDiasBuenosAires","LluviaDiariaAcumuladaSesentaDiasCordoba","PrecioPromedioTreintaDiasMaiz","PrecioPromedioSesentaDiasMaiz","PrecioPromedioNoventaDiasMaiz"]
+    dataset = dataset[cols_of_interest]
+    #generacion del mapa de calor según el nivel de correlacion de variables
+    generarCorrelacion(dataset,archivo)
 
-        index = index + 1
+def procesarArchivoTrigo(archivo):
+    #Lectura del archivo
+    dataset = pd.read_csv(archivo, delimiter=',') 
+    #definicio de las columnas que nos interesaran para el analisis
+    cols_of_interest=["CotizacionDolar","SuperficieSembradaTrigoSantaFe","SuperficieSembradaTrigoBuenosAires","SuperficieSembradaTrigoCordoba","SuperficieCosechadaTrigoSantaFe","SuperficieCosechadaTrigoBuenosAires","SuperficieCosechadaTrigoCordoba","ProduccionTrigoSantaFe","ProduccionTrigoBuenosAires","ProduccionTrigoCordoba","RendimientoTrigoSantaFe","RendimientoTrigoBuenosAires","RendimientoTrigoCordoba","PromedioIncendiosMensualesSantaFe","PromedioIncendiosMensualesBuenosAires","PromedioIncendioMensualesCordoba","VariacionTrigoDiaAnterior","VariacionTrigoTresDia","VariacionTrigoSieteDias", "LluviaAcumuladaSieteDiasSantaFe","LluviaDiariaAcumuladaSieteDiasBuenosAires","LluviaDiariaAcumuladaSieteDiasCordoba","LluviaDiariaAcumuladaSieteDiasSantaFe","LluviaDiariaAcumuladaSieteDiasBuenosAires","LluviaDiariaAcumuladaSieteDiasCordoba","LluviaDiariaAcumuladaTreintaDiasSantaFe","LluviaDiariaAcumuladaTreintaDiasBuenosAires","LluviaDiariaAcumuladaTreintaDiasCordoba","LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe","LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires","LluviaDiariaAcumuladaCuarentaCincoDiasCordoba","LluviaDiariaAcumuladaSesentaDiasSantaFe","LluviaDiariaAcumuladaSesentaDiasBuenosAires","LluviaDiariaAcumuladaSesentaDiasCordoba","PrecioPromedioTreintaDiasTrigo","PrecioPromedioSesentaDiasTrigo","PrecioPromedioNoventaDiasTrigo"]
+    dataset = dataset[cols_of_interest]
+    #generacion del mapa de calor según el nivel de correlacion de variables
+    generarCorrelacion(dataset,archivo)
+
+def procesarArchivoSoja(archivo):
+    #Lectura del archivo
+    dataset = pd.read_csv(archivo, delimiter=',') 
+    #definicio de las columnas que nos interesaran para el analisis
+    cols_of_interest=["CotizacionDolar","SuperficieSembradaSojaSantaFe","SuperficieSembradaSojaBuenosAires","SuperficieSembradaSojaCordoba","SuperficieCosechadaSojaSantaFe","SuperficieCosechadaSojaBuenosAires","SuperficieCosechadaSojaCordoba","ProduccionSojaSantaFe","ProduccionSojaBuenosAires","ProduccionSojaCordoba","RendimientoSojaSantaFe","RendimientoSojaBuenosAires","RendimientoSojaCordoba","PromedioIncendiosMensualesSantaFe","PromedioIncendiosMensualesBuenosAires","PromedioIncendioMensualesCordoba","VariacionSojaDiaAnterior","VariacionSojaTresDia","VariacionSojaSieteDias", "LluviaAcumuladaSieteDiasSantaFe","LluviaDiariaAcumuladaSieteDiasBuenosAires","LluviaDiariaAcumuladaSieteDiasCordoba","LluviaDiariaAcumuladaSieteDiasSantaFe","LluviaDiariaAcumuladaSieteDiasBuenosAires","LluviaDiariaAcumuladaSieteDiasCordoba","LluviaDiariaAcumuladaTreintaDiasSantaFe","LluviaDiariaAcumuladaTreintaDiasBuenosAires","LluviaDiariaAcumuladaTreintaDiasCordoba","LluviaDiariaAcumuladaCuarentaCincoDiasSantaFe","LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires","LluviaDiariaAcumuladaCuarentaCincoDiasCordoba","LluviaDiariaAcumuladaSesentaDiasSantaFe","LluviaDiariaAcumuladaSesentaDiasBuenosAires","LluviaDiariaAcumuladaSesentaDiasCordoba","PrecioPromedioTreintaDiasSoja","PrecioPromedioSesentaDiasSoja","PrecioPromedioNoventaDiasSoja"]
+    dataset = dataset[cols_of_interest]
+    #generacion del mapa de calor según el nivel de correlacion de variables
+    generarCorrelacion(dataset,archivo)
 
 if __name__ == '__main__': #En el programa principal ejecutamos la funcion de procesamiento para cada archivo
-    procesarArchivo('maiz-24hs.csv')
-    procesarArchivo('maiz-72hs.csv')
-    procesarArchivo('maiz-120hs.csv')
-    procesarArchivo('trigo-24hs.csv')
-    procesarArchivo('trigo-72hs.csv')
-    procesarArchivo('trigo-120hs.csv')
-    procesarArchivo('soja-24hs.csv')
-    procesarArchivo('soja-72hs.csv')
-    procesarArchivo('soja-120hs.csv')
+    procesarArchivoMaiz('maiz-24hs.csv')
+    procesarArchivoMaiz('maiz-72hs.csv')
+    procesarArchivoMaiz('maiz-120hs.csv')
+    procesarArchivoTrigo('trigo-24hs.csv')
+    procesarArchivoTrigo('trigo-72hs.csv')
+    procesarArchivoTrigo('trigo-120hs.csv')
+    procesarArchivoSoja('soja-24hs.csv')
+    procesarArchivoSoja('soja-72hs.csv')
+    procesarArchivoSoja('soja-120hs.csv')
 
 
 

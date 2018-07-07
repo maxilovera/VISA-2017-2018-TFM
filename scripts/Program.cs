@@ -357,7 +357,7 @@ namespace TFM
             {
                 registros = registros.Where(x => x.PrecioPromedioDiarioMaizUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
                                                                                                   //escritura del header
-                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioMaizUSD,SuperficieSembradaMaizSantaFe," +
+                writer.WriteLine($"LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioMaizUSD,SuperficieSembradaMaizSantaFe," +
                     $"SuperficieSembradaMaizBuenosAires," +
                     $"SuperficieSembradaMaizCordoba,SuperficieCosechadaMaizSantaFe," +
                     $"SuperficieCosechadaMaizBuenosAires,SuperficieCosechadaMaizCordoba,ProduccionMaizSantaFe,ProduccionMaizBuenosAires,ProduccionMaizCordoba," +
@@ -400,7 +400,7 @@ namespace TFM
             {
                 registros = registros.Where(x => x.PrecioPromedioDiarioMaizUSD != null).ToList(); //solo obtenemos los que tienen cotizacion calculada
                                                                                                   //escritura del header
-                writer.WriteLine($"Fecha,LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioMaizUSD,SuperficieSembradaMaizSantaFe," +
+                writer.WriteLine($"LluviaDiariaSantaFe,LluviaDiariaBuenosAires,LluviaDiariaCordoba,CotizacionDolar,PrecioPromedioDiarioMaizUSD,SuperficieSembradaMaizSantaFe," +
                     $"SuperficieSembradaMaizBuenosAires," +
                     $"SuperficieSembradaMaizCordoba,SuperficieCosechadaMaizSantaFe," +
                     $"SuperficieCosechadaMaizBuenosAires,SuperficieCosechadaMaizCordoba,ProduccionMaizSantaFe,ProduccionMaizBuenosAires,ProduccionMaizCordoba," +
@@ -433,6 +433,8 @@ namespace TFM
                             $"{item.LluviaDiariaAcumuladaSesentaDiasBuenosAires},{item.LluviaDiariaAcumuladaSesentaDiasCordoba},{item.PrecioPromedioTreintaDiasMaiz}," +
                             $"{item.PrecioPromedioSesentaDiasMaiz},{item.PrecioPromedioNoventaDiasMaiz},{itemPredict.PrecioPromedioDiarioMaizUSD}");
                 }
+
+                
             }
         }
 
