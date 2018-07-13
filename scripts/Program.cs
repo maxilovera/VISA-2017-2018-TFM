@@ -432,9 +432,7 @@ namespace TFM
                             $"{item.LluviaDiariaAcumuladaCuarentaCincoDiasBuenosAires},{item.LluviaDiariaAcumuladaCuarentaCincoDiasCordoba},{item.LluviaDiariaAcumuladaSesentaDiasSantaFe}," +
                             $"{item.LluviaDiariaAcumuladaSesentaDiasBuenosAires},{item.LluviaDiariaAcumuladaSesentaDiasCordoba},{item.PrecioPromedioTreintaDiasMaiz}," +
                             $"{item.PrecioPromedioSesentaDiasMaiz},{item.PrecioPromedioNoventaDiasMaiz},{itemPredict.PrecioPromedioDiarioMaizUSD}");
-                }
-
-                
+                }                
             }
         }
 
